@@ -3,19 +3,15 @@ package model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+@PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	private String nom;
 	private String prenom;
 	private String telephone;
