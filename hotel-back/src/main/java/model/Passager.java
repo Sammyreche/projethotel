@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
 @Entity
+@Component
 public class Passager {
 	
 	@Id
@@ -23,22 +26,6 @@ public class Passager {
 	
 	public Passager() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Chambre getChambre() {
-		return chambre;
-	}
-
-	public void setChambre(Chambre chambre) {
-		this.chambre = chambre;
-	}
-
-	public List<ReservationActivite> getResas() {
-		return resas;
-	}
-
-	public void setResas(List<ReservationActivite> resas) {
-		this.resas = resas;
 	}
 	
 	

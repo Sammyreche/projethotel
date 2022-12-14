@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Reservation {
 	
 	@Id
@@ -24,21 +27,7 @@ public class Reservation {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Client getClientPrincipal() {
-		return clientPrincipal;
-	}
 
-	public void setClientPrincipal(Client clientPrincipal) {
-		this.clientPrincipal = clientPrincipal;
-	}
-
-	public List<Passager> getClients() {
-		return clients;
-	}
-
-	public void setClients(List<Passager> clients) {
-		this.clients = clients;
-	}
 	
 
 }

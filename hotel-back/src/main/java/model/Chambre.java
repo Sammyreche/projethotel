@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Chambre {
 
 	private TypeLogement type;
@@ -15,25 +18,7 @@ public class Chambre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	public Chambre() {
-		// TODO Auto-generated constructor stub
-	}
+	public Chambre() {}
 
-	public Chambre(TypeLogement type) {
-		super();
-		this.type = type;
-	}
-
-	public TypeLogement getType() {
-		return type;
-	}
-
-	public void setType(TypeLogement type) {
-		this.type = type;
-	}
-	
-	
-	
-	
 
 }
