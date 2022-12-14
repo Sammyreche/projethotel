@@ -1,8 +1,8 @@
 package model;
 
-public class Restp extends Prestation{
+public class Resto extends Prestation{
 	
-	public Restp() {
+	public Resto() {
 		// TODO Auto-generated constructor stub
 	}
 
