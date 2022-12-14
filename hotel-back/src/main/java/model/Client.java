@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -21,6 +22,7 @@ public class Client extends Compte{
 	private String telephone;
 	@Column(columnDefinition = "VARCHAR(35)")
 	private LocalDate naissance;
+	@Embedded
 	private Reservation resa;
 	
 	public Client() {
