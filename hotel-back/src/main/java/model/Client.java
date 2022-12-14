@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -12,9 +13,13 @@ import org.springframework.stereotype.Component;
 @PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 
+	@Column(columnDefinition = "VARCHAR(35)")
 	private String nom;
+	@Column(columnDefinition = "VARCHAR(35)")
 	private String prenom;
+	@Column(columnDefinition = "VARCHAR(15)")
 	private String telephone;
+	@Column(columnDefinition = "VARCHAR(35)")
 	private LocalDate naissance;
 	private Reservation resa;
 	

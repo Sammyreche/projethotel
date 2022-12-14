@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Chambre {
 
+	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
 	private TypeLogement type;
 	
 	@Id
