@@ -1,32 +1,18 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Prestation {
 	
-	private ReservationActive resaActive;
-	private LocalDate dateDeResa;
+	private List<ReservationActivite> resaActive = new ArrayList();
+	private Double prix;
 	
 	public Prestation() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReservationActive getResaActive() {
-		return resaActive;
-	}
-
-	public void setResaActive(ReservationActive resaActive) {
-		this.resaActive = resaActive;
-	}
-
-	public LocalDate getDateDeResa() {
-		return dateDeResa;
-	}
-
-	public void setDateDeResa(LocalDate dateDeResa) {
-		this.dateDeResa = dateDeResa;
-	}
 	
 	
-
 }

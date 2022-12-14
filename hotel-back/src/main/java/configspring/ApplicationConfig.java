@@ -17,17 +17,17 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("quest.dao") // On active des annotations @Component, @Repository, @Autowired, ... et on
+@ComponentScan("DAO") // On active des annotations @Component, @Repository, @Autowired, ... et on
 							// précise le(s) package(s) à scanner
 @EnableTransactionManagement // On active les annotations @Transactional avec transactionManager
-@EnableJpaRepositories("quest.dao")
+@EnableJpaRepositories("DAO")
 public class ApplicationConfig {
 	// On crée le DataSource
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/quest_jpa");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/hotel");
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
 		dataSource.setMaxTotal(10);

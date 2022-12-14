@@ -1,9 +1,9 @@
 package model;
 
-public class Admin {
+public class Admin extends Compte {
 	
 	public Admin() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
