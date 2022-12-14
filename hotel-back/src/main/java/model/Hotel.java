@@ -7,6 +7,7 @@ public class Hotel {
 	
 	private Admin admin;
 	private List<Personnel> personnels = new ArrayList();
+	private List<Reservation> reservations =new ArrayList();
 	
 	public Hotel() {
 		// TODO Auto-generated constructor stub

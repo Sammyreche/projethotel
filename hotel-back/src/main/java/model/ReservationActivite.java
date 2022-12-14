@@ -1,13 +1,16 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationActive {
+public class ReservationActivite {
 
+	private LocalDate date;
+	private Passager passager;
 	private List<Prestation> prestation = new ArrayList();
 	
-	public ReservationActive() {
+	public ReservationActivite() {
 		// TODO Auto-generated constructor stub
 	}
 

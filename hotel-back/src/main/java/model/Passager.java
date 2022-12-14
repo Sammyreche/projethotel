@@ -1,12 +1,17 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Passager {
 	
+	private String nom;
+	private String prenom;
 	private Chambre chambre;
-	private List<ReservationActive> resas = new ArrayList();
+	private LocalDate naissance;
+	private Reservation resa;
+	private List<ReservationActivite> resas = new ArrayList();
 	
 	public Passager() {
 		// TODO Auto-generated constructor stub
@@ -20,11 +25,11 @@ public class Passager {
 		this.chambre = chambre;
 	}
 
-	public List<ReservationActive> getResas() {
+	public List<ReservationActivite> getResas() {
 		return resas;
 	}
 
-	public void setResas(List<ReservationActive> resas) {
+	public void setResas(List<ReservationActivite> resas) {
 		this.resas = resas;
 	}
 	
