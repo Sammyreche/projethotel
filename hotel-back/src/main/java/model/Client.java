@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class Client extends Compte{
 	@Column(columnDefinition = "VARCHAR(35)")
 	private LocalDate naissance;
 	@Embedded
+	@OneToOne
 	private Reservation resa;
 	
 	public Client() {
