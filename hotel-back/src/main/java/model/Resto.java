@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@DiscriminatorValue("resto")
+@DiscriminatorValue("restaurant")
 public class Resto extends Prestation{
 	
 	public Resto() {
