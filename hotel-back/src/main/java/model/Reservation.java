@@ -4,31 +4,34 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
+import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
+@Table (name = "reservation")
 @Component
-@Embeddable
 public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne
-	private Client clientPrincipal;
-	@OneToMany
-	private List<Passager> clients = new ArrayList();
+	
 	@ManyToOne
-	private Hotel hotel;
+	@JoinColumn(name ="mainClient")
+	private Client clientPrincipal;
+	
+	@OneToMany (mappedBy = "resa")
+	private List<Passager> passagers = new ArrayList();
+	
+	@Column(name = "date", nullable = false)
 	private LocalDate date;
 	
 	public Reservation() {

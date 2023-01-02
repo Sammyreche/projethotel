@@ -1,31 +1,37 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
+@Table (name = "client")
 @Component
 @PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 
-	@Column(columnDefinition = "VARCHAR(35)")
+	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
 	private String nom;
-	@Column(columnDefinition = "VARCHAR(35)")
+	
+	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
 	private String prenom;
-	@Column(columnDefinition = "VARCHAR(15)")
+	
+	@Column(name = "tel", columnDefinition = "VARCHAR(15)", nullable = false)
 	private String telephone;
-	@Column(columnDefinition = "VARCHAR(35)")
+	
+	@Column(name = "birthdate", nullable = false)
 	private LocalDate naissance;
-	@Embedded
-	@OneToOne
-	private Reservation resa;
+	
+	@OneToMany (mappedBy = "clientPrincipal")
+	private List <Reservation> resa;
 	
 	public Client() {
 		// TODO Auto-generated constructor stub
