@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("DAO") // On active des annotations @Component, @Repository, @Autowired, ... et on
+//@ComponentScan("DAO") // On active des annotations @Component, @Repository, @Autowired, ... et on
 							// précise le(s) package(s) à scanner
 @EnableTransactionManagement // On active les annotations @Transactional avec transactionManager
 @EnableJpaRepositories("DAO")
@@ -41,7 +41,7 @@ public class ApplicationConfig {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		emf.setDataSource(dataSource);
-		emf.setPackagesToScan("quest.model");
+		emf.setPackagesToScan("model");
 		emf.setJpaVendorAdapter(vendorAdapter); // On précise le provider
 
 		Properties jpaProperties = new Properties();

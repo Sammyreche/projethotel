@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name = "admin")
-@Component
 @PrimaryKeyJoinColumn(name = "id_admin")
 public class Admin extends Compte {
 	

@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 @Entity
-@Component
 public class Hotel {
 
 	@Id

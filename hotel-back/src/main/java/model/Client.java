@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name = "client")
-@Component
 @PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 

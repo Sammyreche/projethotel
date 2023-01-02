@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name = "staff")
-@Component
 @PrimaryKeyJoinColumn(name = "id_personnel")
 public class Personnel extends Compte {
 	

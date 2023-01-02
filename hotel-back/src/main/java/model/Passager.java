@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 @Entity
-@Component
 @Table (name = "passenger")
 public class Passager {
 	
@@ -31,7 +30,7 @@ public class Passager {
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
 	private String prenom;
 	
-	@Column(name = "room", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JoinColumn(name = "room", columnDefinition = "VARCHAR(35)", nullable = false)
 	@OneToOne
 	private Chambre chambre;
 	

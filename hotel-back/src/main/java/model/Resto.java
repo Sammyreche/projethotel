@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Component
 @DiscriminatorValue("restaurant")
 public class Resto extends Prestation{
 	
