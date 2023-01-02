@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -31,7 +30,7 @@ public class Client extends Compte{
 	@Column(name = "birthdate", nullable = false)
 	private LocalDate naissance;
 	
-	@OneToMany (mappedBy = "client")
+	@OneToMany (mappedBy = "clientPrincipal")
 	private List <Reservation> resa;
 	
 	public Client() {

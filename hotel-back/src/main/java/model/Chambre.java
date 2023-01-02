@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Chambre {
 
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING) //ça sert à quoi ?
 	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
 	private TypeLogement type;
 	

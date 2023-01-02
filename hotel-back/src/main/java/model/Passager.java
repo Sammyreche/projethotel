@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ public class Passager {
 	private String prenom;
 	
 	@Column(name = "room", columnDefinition = "VARCHAR(35)", nullable = false)
+	@OneToOne
 	private Chambre chambre;
 	
 	@Column(name = "birthdate", nullable = false)
@@ -40,7 +42,7 @@ public class Passager {
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToMany(mappedBy = "passenger")
+	@OneToMany(mappedBy = "passager")
 	private List<ReservationActivite> resactivite = new ArrayList();
 	
 	public Passager() {

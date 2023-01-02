@@ -8,11 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="compte", uniqueConstraints=@UniqueConstraint(columnNames = { "login","password"}) )
+//@Table(name="compte", uniqueConstraints=@UniqueConstraint(columnNames = { "login","password"}) ) 
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('admin,','personnel','client')")
 public abstract class Compte {
@@ -21,7 +19,7 @@ public abstract class Compte {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	
-	@Column(name = "login", length= 50, nullable = false)
+	@Column(name = "login", length= 50, nullable = false) 
 	protected String login;
 	
 	@Column(name = "password", length= 20, nullable = false)
