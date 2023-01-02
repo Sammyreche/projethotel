@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name = "reservation")
-@Component
 public class Reservation {
 	
 	@Id

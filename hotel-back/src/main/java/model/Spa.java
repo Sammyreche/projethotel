@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Component
 @DiscriminatorValue("spa")
 public class Spa extends Prestation {
 	

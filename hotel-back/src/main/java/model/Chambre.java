@@ -13,18 +13,45 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name = "room")
-@Component
 public class Chambre {
 
-	@Enumerated(EnumType.STRING) //ça sert à quoi ?
-	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
-	private TypeLogement type;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	//@Enumerated(EnumType.STRING) //ça sert à quoi ?
+	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
+	private TypeLogement type;
+	
+
+	
 	public Chambre() {}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public TypeLogement getType() {
+		return type;
+	}
+
+
+
+	public void setType(TypeLogement type) {
+		this.type = type;
+	}
+	
+	
 
 
 }

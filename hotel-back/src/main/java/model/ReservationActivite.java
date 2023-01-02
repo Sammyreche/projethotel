@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Component
 @Table (name = "activities")
 public class ReservationActivite {
 
