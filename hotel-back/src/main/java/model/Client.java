@@ -23,6 +23,9 @@ public class Client extends Compte{
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
 	private String prenom;
 	
+	@Column(name = "email", columnDefinition = "VARCHAR(50)", nullable = false)
+	private String mail;
+	
 	@Column(name = "tel", columnDefinition = "VARCHAR(15)", nullable = false)
 	private String telephone;
 	

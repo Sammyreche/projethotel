@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+//TO-DO ajouté un booléen disponibilité -- date de résa ?
 
 @Entity
 @Table (name = "room")
