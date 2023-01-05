@@ -16,18 +16,23 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table (name = "passenger")
 public class Passager {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(views.ViewBase.class)
 	private Integer id;
 	
 	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String nom;
 	
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String prenom;
 	
 	@JoinColumn(name = "room", columnDefinition = "VARCHAR(35)", nullable = false)

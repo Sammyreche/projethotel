@@ -12,24 +12,31 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table (name = "client")
 @PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 
 	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String nom;
 	
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String prenom;
 	
 	@Column(name = "email", columnDefinition = "VARCHAR(50)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String mail;
 	
 	@Column(name = "tel", columnDefinition = "VARCHAR(15)", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private String telephone;
 	
 	@Column(name = "birthdate", nullable = false)
+	@JsonView(views.ViewBase.class)
 	private LocalDate naissance;
 	
 	@OneToMany (mappedBy = "clientPrincipal")
