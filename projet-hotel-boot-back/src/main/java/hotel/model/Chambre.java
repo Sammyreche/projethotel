@@ -20,7 +20,7 @@ public class Chambre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	//@Enumerated(EnumType.STRING) //ça sert à quoi ?
+	@Enumerated(EnumType.STRING) //ça sert à quoi ?
 	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
 	private TypeLogement type;
 	

@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 @PrimaryKeyJoinColumn(name = "id_client")
 public class Client extends Compte{
 
-	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "name", columnDefinition = "VARCHAR(35)")
 	@JsonView(views.ViewBase.class)
 	private String nom;
 	
-	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "firstname", columnDefinition = "VARCHAR(35)")
 	@JsonView(views.ViewBase.class)
 	private String prenom;
 	
@@ -31,7 +31,7 @@ public class Client extends Compte{
 	@JsonView(views.ViewBase.class)
 	private String mail;
 	
-	@Column(name = "tel", columnDefinition = "VARCHAR(15)", nullable = false)
+	@Column(name = "tel", columnDefinition = "VARCHAR(15)")
 	@JsonView(views.ViewBase.class)
 	private String telephone;
 	
@@ -88,6 +88,30 @@ public class Client extends Compte{
 
 	public void setNaissance(LocalDate naissance) {
 		this.naissance = naissance;
+	}
+
+
+
+	public String getMail() {
+		return mail;
+	}
+
+
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+
+
+	public List<Reservation> getResa() {
+		return resa;
+	}
+
+
+
+	public void setResa(List<Reservation> resa) {
+		this.resa = resa;
 	}
 	
 	

@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @PrimaryKeyJoinColumn(name = "id_personnel")
 public class Personnel extends Compte {
 	
-	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "name", columnDefinition = "VARCHAR(35)")
 	private String nom;
 	
-	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "firstname", columnDefinition = "VARCHAR(35)")
 	private String prenom;
 	
 	public Personnel() {

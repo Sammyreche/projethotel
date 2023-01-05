@@ -27,31 +27,89 @@ public class Passager {
 	@JsonView(views.ViewBase.class)
 	private Integer id;
 	
-	@Column(name = "name", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "name", columnDefinition = "VARCHAR(35)")
 	@JsonView(views.ViewBase.class)
 	private String nom;
 	
-	@Column(name = "firstname", columnDefinition = "VARCHAR(35)", nullable = false)
+	@Column(name = "firstname", columnDefinition = "VARCHAR(35)")
 	@JsonView(views.ViewBase.class)
 	private String prenom;
 	
-	@JoinColumn(name = "room", columnDefinition = "VARCHAR(35)", nullable = false)
+	@JoinColumn(name = "room_id")
 	@OneToOne
 	private Chambre chambre;
 	
-	@Column(name = "birthdate", nullable = false)
+	@Column(name = "birthdate")
 	private LocalDate naissance;
 	
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToMany(mappedBy = "passager")
-	private List<ReservationActivite> resactivite = new ArrayList();
+	@OneToOne(mappedBy = "passager")
+	private ReservationActivite resactivite;
 	
 	public Passager() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Chambre getChambre() {
+		return chambre;
+	}
+
+	public void setChambre(Chambre chambre) {
+		this.chambre = chambre;
+	}
+
+	public LocalDate getNaissance() {
+		return naissance;
+	}
+
+	public void setNaissance(LocalDate naissance) {
+		this.naissance = naissance;
+	}
+
+	public Reservation getResa() {
+		return resa;
+	}
+
+	public void setResa(Reservation resa) {
+		this.resa = resa;
+	}
+
+	public ReservationActivite getResactivite() {
+		return resactivite;
+	}
+
+	public void setResactivite(ReservationActivite resactivite) {
+		this.resactivite = resactivite;
+	}
+
+
 	
 	
 

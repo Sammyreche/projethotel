@@ -20,7 +20,7 @@ public class ReservationActivite {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "date", nullable = false)
+	@Column(name = "date")
 	private LocalDate date;
 	
 	@ManyToOne
@@ -31,5 +31,39 @@ public class ReservationActivite {
 	private Prestation prestation; 
 	
 	public ReservationActivite() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public Passager getPassager() {
+		return passager;
+	}
+
+	public void setPassager(Passager passager) {
+		this.passager = passager;
+	}
+
+	public Prestation getPrestation() {
+		return prestation;
+	}
+
+	public void setPrestation(Prestation prestation) {
+		this.prestation = prestation;
+	}
+	
+	
 
 }

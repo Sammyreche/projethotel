@@ -1,5 +1,6 @@
 package hotel.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,11 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import hotel.dao.IDAOReservation;
+import hotel.model.Passager;
 import hotel.model.Reservation;
 import hotel.model.views;
+import hotel.web.dto.ReservationActivitePassagerDTO;
+import hotel.web.dto.ReservationDto;
 
 
 
@@ -36,25 +40,52 @@ public class ReservationResource {
 	private IDAOReservation daoReservation;
 
 	@GetMapping("")
-	public List<Reservation> findall() {
-		List<Reservation> reservations = daoReservation.findAll();
+	public List<ReservationDto> findall() {
+		
+		List<ReservationDto>  reservationDto = new ArrayList<>();
 
-		return reservations;
+	System.out.println(	daoReservation.findAll().size());
+		for (int i = 1; i <= daoReservation.findAll().size(); i++) {
+			reservationDto.add(findById(i));
+		}
+
+		return reservationDto;
 	}
 
 	//aurevoir
-//	@GetMapping("/{id}")
-//	public Reservation findById(@PathVariable Integer id) {
-//		Optional<Reservation> optReservation = daoReservation.findById(id);
-//
-//		if (optReservation.isEmpty()) {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//		}
-//
-//		return optReservation.get();
-//	}
-	
 	@GetMapping("/{id}/detail")
+	public ReservationDto findById(@PathVariable Integer id) {
+		ReservationDto reservationDto = new ReservationDto();
+		
+		Reservation reservation = daoReservation.findById(id).get();
+		for (Passager passager : reservation.getPassagers()) {
+			ReservationActivitePassagerDTO activitePassagerDTO = new ReservationActivitePassagerDTO();
+			activitePassagerDTO.setId_passager(passager.getId());
+			activitePassagerDTO.setDate(passager.getResactivite().getDate());
+			activitePassagerDTO.setNom_passager(passager.getNom());
+			activitePassagerDTO.setPrenom_passager(passager.getPrenom());
+			activitePassagerDTO.setNom_passager(passager.getNom());
+			activitePassagerDTO.setNom_passager(passager.getNom());
+			if (!(passager.getResactivite().getPrestation().getTypeActivite()==null)) {
+				activitePassagerDTO.setNombre(passager.getResactivite() == null ? null :passager.getResactivite().getPrestation().getNombre());
+				activitePassagerDTO.setTypeActivite(passager.getResactivite().getPrestation().getTypeActivite().toString());
+			}
+			reservationDto.getPassagers().add(activitePassagerDTO);
+		}
+		reservationDto.setId(reservation.getId());
+		reservationDto.setDateDebut_resa(reservation.getDateDebut());
+		reservationDto.setDateFin_resa(reservation.getDateFin());
+		if (!reservation.getPassagers().isEmpty()) {
+			reservationDto.setTypeLogement(reservation.getPassagers().get(0).getChambre().getType().toString());
+		}else {
+			reservationDto.setTypeLogement(null);
+		}
+
+
+		return reservationDto;
+	}
+	
+	@GetMapping("/{id}")
 	@JsonView(views.ViewResaPassager.class)
 	public Reservation detailById(@PathVariable Integer id) {
 		Optional<Reservation> optReservation = daoReservation.findById(id);

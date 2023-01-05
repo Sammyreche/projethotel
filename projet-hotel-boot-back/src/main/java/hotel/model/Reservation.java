@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +33,8 @@ public class Reservation {
 	private Client clientPrincipal;
 	
 	@OneToMany (mappedBy = "resa")
-	@JsonView(views.ViewResaPassager.class)
-	private List<Passager> passagers ;
+	@JsonView(views.ViewResa.class)
+	private List<Passager> passagers = new ArrayList<>();
 	
 	@Column(name = "date_Debut", nullable = false)
 	@JsonView(views.ViewBase.class)
@@ -84,6 +85,15 @@ public class Reservation {
 	}
 
 	public void setDateFin(LocalDate dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public Reservation(Integer id, Client clientPrincipal, List<Passager> passagers, LocalDate dateDebut,
+			LocalDate dateFin) {
+		this.id = id;
+		this.clientPrincipal = clientPrincipal;
+		this.passagers = passagers;
+		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
 
