@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table (name = "reservation")
+
 public class Reservation {
 	
 	@Id
@@ -32,7 +34,7 @@ public class Reservation {
 	@JsonView(views.ViewResa.class)
 	private Client clientPrincipal;
 	
-	@OneToMany (mappedBy = "resa")
+	@OneToMany (mappedBy = "resa",cascade = CascadeType.ALL)
 	@JsonView(views.ViewResa.class)
 	private List<Passager> passagers = new ArrayList<>();
 	
@@ -95,6 +97,12 @@ public class Reservation {
 		this.passagers = passagers;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", clientPrincipal=" + clientPrincipal + ", passagers=" + passagers
+				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
 	}
 
 

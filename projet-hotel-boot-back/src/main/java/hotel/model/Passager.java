@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Passager {
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToOne(mappedBy = "passager")
+	@OneToOne( cascade = CascadeType.ALL)
 	private ReservationActivite resactivite;
 	
 	public Passager() {
@@ -107,6 +108,12 @@ public class Passager {
 
 	public void setResactivite(ReservationActivite resactivite) {
 		this.resactivite = resactivite;
+	}
+
+	@Override
+	public String toString() {
+		return "Passager [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", chambre=" + chambre + ", naissance="
+				+ naissance + " resactivite=" + resactivite + "]";
 	}
 
 

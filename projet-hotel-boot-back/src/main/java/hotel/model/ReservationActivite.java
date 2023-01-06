@@ -1,6 +1,8 @@
 package hotel.model;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -23,11 +26,11 @@ public class ReservationActivite {
 	@Column(name = "date")
 	private LocalDate date;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "passager")
 	private Passager passager;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Prestation prestation; 
 	
 	public ReservationActivite() {}
