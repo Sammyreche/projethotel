@@ -274,8 +274,12 @@ public Reservation createbis( @RequestBody ReservationDto reservationDto) {
 						chambre.setType((TypeLogement.valueOf(reservationDto.getTypeLogement())));
 					}
 	if (!(reservationDto.getPassagers().isEmpty())) {
+		int i = 0;
 			for (ReservationActivitePassagerDTO p : reservationDto.getPassagers()) {
+				
 				Passager passager = new Passager();
+				passager.setResa(reservation);
+				
 				//passager=daoPassager.save(passager);
 				ReservationActivite activite = new ReservationActivite();
 				activite = daoReservationActivite.save(activite);
@@ -323,17 +327,22 @@ public Reservation createbis( @RequestBody ReservationDto reservationDto) {
 //					activite.setPassager(passager);
 					activite=daoReservationActivite.save(activite);
 					passager.setResactivite(activite);
-					passager.setResa(reservation);
+//					passager.setResa(reservation);
+//					reservation = daoReservation.save(reservation);
+//					reservation.getPassagers().forEach(t -> t.setResa(reservation) );
+//					passager.getResa().setId(reservation.getId());
 					passagers.add(passager);
 
 					passager=daoPassager.save(passager);
+					activite.setPassager(passager);
 					System.out.println("avant le save");
-					reservation.setPassagers(passagers);
-					//reservation.getPassagers().add(passager);
+					//reservation.setPassagers(passagers);
+					reservation.getPassagers().add(passager);
 					
 
 					System.out.println("après le save");
 			//System.out.println(passager);
+					i++;
 
 		}
 			
@@ -341,6 +350,7 @@ public Reservation createbis( @RequestBody ReservationDto reservationDto) {
 	}else {
 		reservation.setPassagers(null);
 		}
+	
 	reservation=daoReservation.save(reservation);
 	
 	passagers = reservation.getPassagers();
@@ -350,16 +360,6 @@ public Reservation createbis( @RequestBody ReservationDto reservationDto) {
 		}
 	}
 	
-//	for (Passager p : reservationRecuperer.getPassagers()) {
-//		p.setResa(reservationRecuperer);
-//	}
-//	for (Passager passager : passagers) {
-//		passager.setResa(reservationRecuperer);
-//	}
-//	reservation.getPassagers().addAll(passagers);
-//	reservation=daoReservation.save(reservation);
-//
-	System.out.println(passagers);
 
 	return reservation;
 }
