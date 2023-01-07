@@ -34,15 +34,15 @@ public class Reservation {
 	@JsonView(views.ViewResa.class)
 	private Client clientPrincipal;
 	
-	@OneToMany (mappedBy = "resa",cascade = CascadeType.ALL)
+	@OneToMany (mappedBy = "resa")
 	@JsonView(views.ViewResa.class)
 	private List<Passager> passagers = new ArrayList<>();
 	
-	@Column(name = "date_Debut", nullable = false)
+	@Column(name = "date_Debut")
 	@JsonView(views.ViewBase.class)
 	private LocalDate dateDebut;
 	
-	@Column(name = "date_fin", nullable = false)
+	@Column(name = "date_fin")
 	@JsonView(views.ViewBase.class)
 	private LocalDate dateFin;
 	

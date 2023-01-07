@@ -47,7 +47,7 @@ public class Passager {
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToOne( cascade = CascadeType.ALL)
+	@OneToOne
 	private ReservationActivite resactivite;
 	
 	public Passager() {

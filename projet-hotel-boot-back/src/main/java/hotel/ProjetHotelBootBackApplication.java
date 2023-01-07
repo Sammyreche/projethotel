@@ -8,14 +8,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import hotel.dao.IDAOChambre;
 import hotel.dao.IDAOClient;
 import hotel.dao.IDAOCompte;
 import hotel.dao.IDAOPassager;
+import hotel.dao.IDAOPrestation;
 import hotel.dao.IDAOReservation;
+import hotel.dao.IDAOReservationActivite;
+import hotel.model.Chambre;
 import hotel.model.Client;
 import hotel.model.Passager;
+import hotel.model.Prestation;
 import hotel.model.Reservation;
 import hotel.model.ReservationActivite;
+import hotel.model.SalleDeSport;
+import hotel.model.TypeLogement;
 
 @SpringBootApplication
 public class ProjetHotelBootBackApplication {
@@ -24,11 +31,14 @@ public class ProjetHotelBootBackApplication {
 		SpringApplication.run(ProjetHotelBootBackApplication.class, args);
 	}
 
-   // @Bean
+   //@Bean
     CommandLineRunner commandLineRunner(
     		IDAOClient daoClient, IDAOCompte daoCompte,
     		IDAOPassager daoPassager,
-    		IDAOReservation daoReservation){
+    		IDAOReservation daoReservation,
+    		IDAOReservationActivite idaoReservationActivite,
+    		IDAOPrestation daoPrestation,
+    		IDAOChambre daocChambre){
        
 
 
@@ -68,6 +78,24 @@ public class ProjetHotelBootBackApplication {
         		daoReservation.save(reservation);
             });
             
+            Stream.of("othmane","omar","clement").forEach(name->{
+        		ReservationActivite reservationActivite = new ReservationActivite();
+        		reservationActivite.setDate(LocalDate.parse("2022-11-12"));
+        		idaoReservationActivite.save(reservationActivite);
+            });
+            
+            Stream.of("othmane","omar","clement").forEach(name->{
+            	Prestation presta = new SalleDeSport();
+            	presta.setNombre(3);
+            	presta.setPrix((double) 1222);
+        		daoPrestation.save(presta);
+            });
+            
+            Stream.of(TypeLogement.suite,TypeLogement.chambresimple,TypeLogement.suitepresidentielle).forEach(name->{
+            	Chambre chambre = new Chambre();
+            	chambre.setType(name);
+            	daocChambre.save(chambre);
+            });
             
             
             for (int i = 0; i < 3; i++) {

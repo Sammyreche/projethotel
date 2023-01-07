@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table (name = "activities")
+@Table (name = "reservation_activities")
 public class ReservationActivite {
 
 	@Id
@@ -30,7 +30,7 @@ public class ReservationActivite {
 	@JoinColumn(name = "passager")
 	private Passager passager;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Prestation prestation; 
 	
 	public ReservationActivite() {}

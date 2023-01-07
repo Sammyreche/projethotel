@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "services")
+@Table (name = "prestation")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
 public abstract class Prestation {
@@ -35,7 +35,7 @@ public abstract class Prestation {
 	private int nombre;
 	
 	@Enumerated(EnumType.STRING) //ça sert à quoi ?
-	@Column(name="type_prestation",nullable = false,columnDefinition = "ENUM('restaurant','spa','gym')")
+	@Column(name="type_prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
 	private TypeActivite typeActivite;
 	
 	public Prestation() {
