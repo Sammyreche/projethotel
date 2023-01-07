@@ -246,7 +246,7 @@ public class ReservationResource {
 
 
 @PostMapping("/bis")
-public Reservation createbis( @RequestBody ReservationDto reservationDto) {
+public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 
 	Reservation reservation = new Reservation();
 	reservation = daoReservation.save(reservation);
@@ -360,8 +360,8 @@ public Reservation createbis( @RequestBody ReservationDto reservationDto) {
 		}
 	}
 	
-
-	return reservation;
+	ReservationDto resultat = findById(reservation.getId());
+	return resultat;
 }
 
 }
