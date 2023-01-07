@@ -59,41 +59,49 @@ public class ReservationResource {
 	@GetMapping("")
 	public List<ReservationDto> findall() {
 		
-		List<ReservationDto>  reservationDto = new ArrayList<>();
+		List<ReservationDto>  reservationDtos = new ArrayList<>();
+		
+		daoReservation.findAll().forEach(t -> reservationDtos.add(findById(t.getId())));
 
-		for (int i = 1; i <= daoReservation.findAll().size(); i++) {
-			reservationDto.add(findById(i));
-		}
+//		for (int i = 1; i < daoReservation.findAll().size(); i++) {
+//			if (findById(i)!=null) {
+//				reservationDtos.add(findById(i));
+//			}
+//		}
 
-		return reservationDto;
+		return reservationDtos;
 	}
 
 	//aurevoir
 	@GetMapping("/{id}/detail")
 	public ReservationDto findById(@PathVariable Integer id) {
 		ReservationDto reservationDto = new ReservationDto();
-		
+		if (!daoReservation.findById(id).isPresent()) {
+			return reservationDto=null;
+		}
 		Reservation reservation = daoReservation.findById(id).get();
-		for (Passager passager : reservation.getPassagers()) {
-			ReservationActivitePassagerDTO activitePassagerDTO = new ReservationActivitePassagerDTO();
-			activitePassagerDTO.setId_passager(passager.getId());
-			activitePassagerDTO.setNom_passager(passager.getNom());
-			activitePassagerDTO.setPrenom_passager(passager.getPrenom());
-			activitePassagerDTO.setNom_passager(passager.getNom());
-			activitePassagerDTO.setNom_passager(passager.getNom());
-	//		if (!(passager.getResactivite().getPrestation().getTypeActivite()==null)) {
-			if (!(passager.getResactivite()==null)) {
-				activitePassagerDTO.setNombre(passager.getResactivite() == null ? null :passager.getResactivite().getPrestation().getNombre());
-				activitePassagerDTO.setTypeActivite(passager.getResactivite().getPrestation().getTypeActivite().toString());
-				activitePassagerDTO.setDate(passager.getResactivite().getDate());
+		if (!(reservation.getPassagers()==null)) {
+			for (Passager passager : reservation.getPassagers()) {
+				ReservationActivitePassagerDTO activitePassagerDTO = new ReservationActivitePassagerDTO();
+				activitePassagerDTO.setId_passager(passager.getId());
+				activitePassagerDTO.setNom_passager(passager.getNom());
+				activitePassagerDTO.setPrenom_passager(passager.getPrenom());
+				activitePassagerDTO.setNom_passager(passager.getNom());
+				activitePassagerDTO.setNom_passager(passager.getNom());
+		//		if (!(passager.getResactivite().getPrestation().getTypeActivite()==null)) {
+				if (!(passager.getResactivite()==null)) {
+					activitePassagerDTO.setNombre(passager.getResactivite() == null ? null :passager.getResactivite().getPrestation().getNombre());
+					activitePassagerDTO.setTypeActivite(passager.getResactivite().getPrestation().getTypeActivite().toString());
+					activitePassagerDTO.setDate(passager.getResactivite().getDate());
 
+				}
+				reservationDto.getPassagers().add(activitePassagerDTO);
 			}
-			reservationDto.getPassagers().add(activitePassagerDTO);
 		}
 		reservationDto.setId(reservation.getId());
 		reservationDto.setDateDebut_resa(reservation.getDateDebut());
 		reservationDto.setDateFin_resa(reservation.getDateFin());
-		if (!reservation.getPassagers().isEmpty()) {
+		if (!(reservation.getPassagers()==null)) {
 			reservationDto.setTypeLogement(reservation.getPassagers().get(0).getChambre().getType().toString());
 		}else {
 			reservationDto.setTypeLogement(null);
@@ -249,6 +257,7 @@ public class ReservationResource {
 public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 
 	Reservation reservation = new Reservation();
+	reservation.setId(reservationDto.getId());
 	reservation = daoReservation.save(reservation);
 	System.out.println("ok pour resa");
 //	Passager passager = new Passager();
@@ -352,13 +361,6 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 		}
 	
 	reservation=daoReservation.save(reservation);
-	
-	passagers = reservation.getPassagers();
-	for (Passager p : reservation.getPassagers()) {
-		if (p.getResa()==null) {
-			
-		}
-	}
 	
 	ReservationDto resultat = findById(reservation.getId());
 	return resultat;

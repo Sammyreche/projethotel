@@ -29,12 +29,12 @@ public class Reservation {
 	@JsonView(views.ViewBase.class)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.REMOVE)
 	@JoinColumn(name ="mainClient")
 	@JsonView(views.ViewResa.class)
 	private Client clientPrincipal;
 	
-	@OneToMany (mappedBy = "resa")
+	@OneToMany (mappedBy = "resa",cascade = CascadeType.REMOVE)
 	@JsonView(views.ViewResa.class)
 	private List<Passager> passagers = new ArrayList<>();
 	
