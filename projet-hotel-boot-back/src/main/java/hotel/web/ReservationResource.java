@@ -91,6 +91,7 @@ public class ReservationResource {
 		//		if (!(passager.getResactivite().getPrestation().getTypeActivite()==null)) {
 				if (!(passager.getResactivite()==null)) {
 					activitePassagerDTO.setNombre(passager.getResactivite() == null ? null :passager.getResactivite().getPrestation().getNombre());
+					activitePassagerDTO.setId_prestation((passager.getResactivite() == null ? null :passager.getResactivite().getPrestation().getId()));
 					activitePassagerDTO.setTypeActivite(passager.getResactivite().getPrestation().getTypeActivite().toString());
 					activitePassagerDTO.setDate(passager.getResactivite().getDate());
 
@@ -311,6 +312,8 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 				chambre=daoChambre.save(chambre);
 					passager.setChambre(chambre);
 					passager.setId(p.getId_passager());
+					passager=daoPassager.save(passager);
+
 					passager.setNom(p.getNom_passager());
 					passager.setPrenom(p.getPrenom_passager());
 					passager.setNaissance(p.getNaissance_passager());
@@ -322,6 +325,7 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 						if ((p.getTypeActivite()!=null)) {
 							if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.gym) {
 								Prestation prestation = new SalleDeSport();
+								prestation.setId(p.getId_prestation());
 								prestation = daoPrestation.save(prestation);
 								prestation.setNombre(p.getNombre());
 								prestation.setTypeActivite(TypeActivite.gym);
@@ -331,6 +335,7 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 							} else if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.restaurant) {
 								System.out.println("ok pour resto");
 								Prestation prestation = new Resto();
+								prestation.setId(p.getId_prestation());
 								prestation = daoPrestation.save(prestation);
 								prestation.setNombre(p.getNombre());
 								prestation.setTypeActivite(TypeActivite.restaurant);
@@ -340,6 +345,7 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 							}	else if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.spa) {
 								System.out.println("ok pour spa");
 								Prestation prestation = new Spa();
+								prestation.setId(p.getId_prestation());
 								prestation = daoPrestation.save(prestation);
 								prestation.setNombre(p.getNombre());
 								prestation.setTypeActivite(TypeActivite.spa);

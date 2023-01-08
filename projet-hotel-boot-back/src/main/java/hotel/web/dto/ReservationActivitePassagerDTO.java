@@ -19,6 +19,7 @@ public class ReservationActivitePassagerDTO {
 	private LocalDate date;
 	private int nombre;
 	private String typeActivite;
+	private Integer id_prestation;
 	
 	
 	public ReservationActivitePassagerDTO() {
@@ -65,6 +66,12 @@ public class ReservationActivitePassagerDTO {
 	}
 	public void setTypeActivite(String typeActivite) {
 		this.typeActivite = typeActivite;
+	}
+	public Integer getId_prestation() {
+		return id_prestation;
+	}
+	public void setId_prestation(Integer id_prestation) {
+		this.id_prestation = id_prestation;
 	}
 	
 	
