@@ -246,9 +246,12 @@ public class ReservationResource {
 		}
 		Reservation r = daoReservation.findById(id).get();
 		if (r.getPassagers()!=null) {
-			r.getPassagers().forEach(t -> deletepassager(t.getId()));
+			daoReservation.delete(r);
+			//r.getPassagers().forEach(t -> deletepassager(t.getId()));
+		}else {
+			daoReservation.delete(r);
 		}
-		daoReservation.delete(r);
+		
 	}
 
 	@DeleteMapping("/passager/{id}")
