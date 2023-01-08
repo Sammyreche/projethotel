@@ -244,8 +244,11 @@ public class ReservationResource {
 		if (!daoReservation.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-
-		daoReservation.deleteById(id);
+		Reservation r = daoReservation.findById(id).get();
+		if (r.getPassagers()!=null) {
+			r.getPassagers().forEach(t -> deletepassager(t.getId()));
+		}
+		daoReservation.delete(r);
 	}
 
 	@DeleteMapping("/passager/{id}")
@@ -254,8 +257,9 @@ public class ReservationResource {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		Passager p=daoPassager.findById(id).get();
-
-		daoPassager.deleteById(p.getId());
+		ReservationActivite activite = daoReservationActivite.findById(p.getResactivite().getId()).get();
+		daoReservationActivite.delete(activite);
+		daoPassager.delete(p);
 	}
 
 
