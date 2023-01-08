@@ -26,7 +26,7 @@ public abstract class Prestation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany (mappedBy = "prestation")
+	@OneToMany (mappedBy = "prestation",cascade = CascadeType.REMOVE)
 	private List <ReservationActivite> resaActivite;
 	
 	@Column(name="price",columnDefinition = "DECIMAL(6,2)")

@@ -37,17 +37,17 @@ public class Passager {
 	private String prenom;
 	
 	@JoinColumn(name = "room_id")
-	@OneToOne (cascade = CascadeType.REMOVE)
+	@OneToOne  
 	private Chambre chambre;
 	
 	@Column(name = "birthdate")
 	private LocalDate naissance;
 	
-	@ManyToOne  (cascade = CascadeType.REMOVE)
+	@ManyToOne 
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToOne (cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private ReservationActivite resactivite;
 	
 	public Passager() {

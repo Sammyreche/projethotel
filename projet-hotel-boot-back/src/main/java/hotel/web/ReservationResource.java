@@ -248,6 +248,17 @@ public class ReservationResource {
 		daoReservation.deleteById(id);
 	}
 
+	@DeleteMapping("/passager/{id}")
+	public void deletepassager(@PathVariable Integer id) {
+		if (!daoPassager.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		Passager p=daoPassager.findById(id).get();
+		Chambre chambre = daoChambre.findById(p.getChambre().getId()).get();
+		//daoChambre.delete(chambre);
+
+		daoPassager.deleteById(p.getId());
+	}
 
 
 
