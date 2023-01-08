@@ -26,11 +26,11 @@ public class ReservationActivite {
 	@Column(name = "date")
 	private LocalDate date;
 	
-	@OneToOne (cascade = CascadeType.REMOVE)
+	@OneToOne (orphanRemoval = true,cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "passager")
 	private Passager passager;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Prestation prestation; 
 	
 	public ReservationActivite() {}

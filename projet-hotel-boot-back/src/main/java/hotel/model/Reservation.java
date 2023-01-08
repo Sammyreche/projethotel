@@ -34,7 +34,7 @@ public class Reservation {
 	@JsonView(views.ViewResa.class)
 	private Client clientPrincipal;
 	
-	@OneToMany (mappedBy = "resa", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	@OneToMany (mappedBy = "resa", orphanRemoval = true, cascade = CascadeType.REFRESH)
 	@JsonView(views.ViewResa.class)
 	private List<Passager> passagers = new ArrayList<>();
 	

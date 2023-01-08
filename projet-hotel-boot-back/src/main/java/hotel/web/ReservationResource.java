@@ -254,8 +254,6 @@ public class ReservationResource {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		Passager p=daoPassager.findById(id).get();
-		Chambre chambre = daoChambre.findById(p.getChambre().getId()).get();
-		//daoChambre.delete(chambre);
 
 		daoPassager.deleteById(p.getId());
 	}

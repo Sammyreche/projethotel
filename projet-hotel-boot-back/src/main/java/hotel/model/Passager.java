@@ -43,11 +43,11 @@ public class Passager {
 	@Column(name = "birthdate")
 	private LocalDate naissance;
 	
-	@ManyToOne 
+	@ManyToOne (cascade = CascadeType.REFRESH)
 	@JoinColumn(name ="resa")
 	private Reservation resa;
 	
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REFRESH)
 	private ReservationActivite resactivite;
 	
 	public Passager() {
