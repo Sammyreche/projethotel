@@ -2,15 +2,15 @@ package hotel.model;
 
 
 
-public class views {
-
+public class Views {
+	
 	public static class ViewBase {}	
 	
-	public static class ViewResa extends ViewBase {}
+    public static class ViewReservationActivite extends ViewBase {}
 	
-	public static class ViewResaPassager extends ViewResa {}
-//	
-//	public static class ViewFiliere extends ViewBase {}
+	//public static class ViewStagiaireDetail extends ViewStagiaire {}
+}
+Filiere extends ViewBase {}
 //	
 //	public static class ViewFiliereWithStagiaires extends ViewFiliere {}
 //	

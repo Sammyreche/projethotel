@@ -12,15 +12,19 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 //TO-DO ajouté un booléen disponibilité -- date de résa ?
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table (name = "room")
 public class Chambre {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	
 	@Enumerated(EnumType.STRING) //ça sert à quoi ?
+	@JsonView(Views.ViewBase.class)
 	@Column(name="typeChambre",nullable = false,columnDefinition = "ENUM('chambresimple','suite','suitepresidentielle')")
 	private TypeLogement type;
 	
