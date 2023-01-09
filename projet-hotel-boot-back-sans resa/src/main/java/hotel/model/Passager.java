@@ -37,7 +37,7 @@ public class Passager {
 	private String prenom;
 	
 	@JoinColumn(name = "room_id")
-	@OneToOne  
+	@OneToOne 
 	private Chambre chambre;
 	
 	@Column(name = "birthdate")
@@ -48,7 +48,7 @@ public class Passager {
 	private Reservation resa;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
-	private ReservationActivite resactivite;
+	private Prestation prestation;
 	
 	public Passager() {
 		// TODO Auto-generated constructor stub
@@ -102,19 +102,22 @@ public class Passager {
 		this.resa = resa;
 	}
 
-	public ReservationActivite getResactivite() {
-		return resactivite;
+
+
+	public Prestation getPrestation() {
+		return prestation;
 	}
 
-	public void setResactivite(ReservationActivite resactivite) {
-		this.resactivite = resactivite;
+	public void setPrestation(Prestation prestation) {
+		this.prestation = prestation;
 	}
 
 	@Override
 	public String toString() {
 		return "Passager [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", chambre=" + chambre + ", naissance="
-				+ naissance + " resactivite=" + resactivite + "]";
+				+ naissance + ", prestation=" + prestation + "]";
 	}
+
 
 
 	

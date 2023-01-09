@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import hotel.dao.IDAOChambre;
 import hotel.dao.IDAOClient;
@@ -14,14 +13,11 @@ import hotel.dao.IDAOCompte;
 import hotel.dao.IDAOPassager;
 import hotel.dao.IDAOPrestation;
 import hotel.dao.IDAOReservation;
-import hotel.dao.IDAOReservationActivite;
 import hotel.model.Chambre;
 import hotel.model.Client;
 import hotel.model.Passager;
 import hotel.model.Prestation;
 import hotel.model.Reservation;
-import hotel.model.ReservationActivite;
-import hotel.model.SalleDeSport;
 import hotel.model.TypeLogement;
 
 @SpringBootApplication
@@ -36,7 +32,6 @@ public class ProjetHotelBootBackApplication {
     		IDAOClient daoClient, IDAOCompte daoCompte,
     		IDAOPassager daoPassager,
     		IDAOReservation daoReservation,
-    		IDAOReservationActivite idaoReservationActivite,
     		IDAOPrestation daoPrestation,
     		IDAOChambre daocChambre){
        
@@ -45,7 +40,6 @@ public class ProjetHotelBootBackApplication {
     	return args -> {
     		
     		
-    		ReservationActivite activite = new ReservationActivite();
 
 
     		
@@ -79,13 +73,13 @@ public class ProjetHotelBootBackApplication {
             });
             
             Stream.of("othmane","omar","clement").forEach(name->{
-        		ReservationActivite reservationActivite = new ReservationActivite();
+        		Prestation reservationActivite = new Prestation();
         		reservationActivite.setDate(LocalDate.parse("2022-11-12"));
-        		idaoReservationActivite.save(reservationActivite);
+        		daoPrestation.save(reservationActivite);
             });
             
             Stream.of("othmane","omar","clement").forEach(name->{
-            	Prestation presta = new SalleDeSport();
+            	Prestation presta = new Prestation();
             	presta.setNombre(3);
             	presta.setPrix((double) 1222);
         		daoPrestation.save(presta);
