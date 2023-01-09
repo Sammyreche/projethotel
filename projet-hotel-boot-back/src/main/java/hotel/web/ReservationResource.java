@@ -299,7 +299,7 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 	if (!(reservationDto.getTypeLogement()==null)) {
 						chambre.setType((TypeLogement.valueOf(reservationDto.getTypeLogement())));
 					}
-	if (!(reservationDto.getPassagers().isEmpty())) {
+	if (!(reservationDto.getPassagers()==null)) {
 		int i = 0;
 			for (ReservationActivitePassagerDTO p : reservationDto.getPassagers()) {
 				
@@ -386,6 +386,11 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 	
 	ReservationDto resultat = findById(reservation.getId());
 	return resultat;
+}
+
+@GetMapping("/test/{id}")
+public Reservation test( @PathVariable Integer id) {
+	return daoReservation.findById(id).get();
 }
 
 }
