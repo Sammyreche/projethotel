@@ -12,7 +12,7 @@ import javax.persistence.InheritanceType;
 @Entity
 //@Table(name="compte", uniqueConstraints=@UniqueConstraint(columnNames = { "login","password"}) ) 
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('admin,','personnel','client')")
+@DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('admin','personnel','client')")
 public abstract class Compte {
 	
 	@Id
@@ -25,6 +25,10 @@ public abstract class Compte {
 	@Column(name = "password", length= 20, nullable = false)
 	protected String password;
 	
+	
+	public Compte() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Integer getId() {
 		return id;
