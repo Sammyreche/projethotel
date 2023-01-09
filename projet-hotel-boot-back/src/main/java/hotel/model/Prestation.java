@@ -31,21 +31,13 @@ import hotel.model.Views;
 @Entity
 @Table (name = "prestation")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-<<<<<<< Updated upstream
-@DiscriminatorColumn(name="Prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
-=======
 @DiscriminatorColumn(name="type_prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
->>>>>>> Stashed changes
 public abstract class Prestation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(Views.ViewBase.class)
 	private Integer id;
-<<<<<<< Updated upstream
-	
-	@OneToMany (mappedBy = "prestation",orphanRemoval = false,cascade = CascadeType.REMOVE)
-=======
 	//@JsonView(Views.ViewBase.class)
 	@OneToMany (mappedBy = "prestation")
 >>>>>>> Stashed changes
@@ -90,25 +82,6 @@ public abstract class Prestation {
 		this.prix = prix;
 	}
 
-<<<<<<< Updated upstream
-	public int getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(int nombre) {
-		this.nombre = nombre;
-	}
-
-	public TypeActivite getTypeActivite() {
-		return typeActivite;
-	}
-
-	public void setTypeActivite(TypeActivite typeActivite) {
-		this.typeActivite = typeActivite;
-	}
-
-=======
->>>>>>> Stashed changes
 	
 	
 }
