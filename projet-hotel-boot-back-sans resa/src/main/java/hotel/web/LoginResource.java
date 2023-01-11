@@ -1,7 +1,5 @@
 package hotel.web;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,13 +22,13 @@ public class LoginResource {
 	
 	@GetMapping("")
 	public Compte login(@PathVariable String login, String password) {
-		Optional<Compte> optCompte = daoCompte.findByLoginAndPassword(login,password);
+		Compte clogin = daoCompte.findByLoginAndPassword(login,password);
 
-		if (optCompte.isEmpty()) {
+		if (clogin == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou mot de passe incorrect");
 		}
 
-		return optCompte.get();
+		return clogin;
 	}
 
 }
