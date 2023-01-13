@@ -16,20 +16,36 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import hotel.model.Views;
+
+
+
+
+
+
+
+
+
 @Entity
 @Table (name = "prestation")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
+@DiscriminatorColumn(name="type_prestation",columnDefinition = "ENUM('restaurant','spa','gym')")
 public abstract class Prestation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
-	
-	@OneToMany (mappedBy = "prestation",orphanRemoval = false,cascade = CascadeType.REMOVE)
+	//@JsonView(Views.ViewBase.class)
+	@OneToMany (mappedBy = "prestation")
+>>>>>>> Stashed changes
 	private List <ReservationActivite> resaActivite;
 	
+	
 	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
+	@JsonView(Views.ViewBase.class)
 	private Double prix;
 	
 	private int nombre;
@@ -64,22 +80,6 @@ public abstract class Prestation {
 
 	public void setPrix(Double prix) {
 		this.prix = prix;
-	}
-
-	public int getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(int nombre) {
-		this.nombre = nombre;
-	}
-
-	public TypeActivite getTypeActivite() {
-		return typeActivite;
-	}
-
-	public void setTypeActivite(TypeActivite typeActivite) {
-		this.typeActivite = typeActivite;
 	}
 
 	

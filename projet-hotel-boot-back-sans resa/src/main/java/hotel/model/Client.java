@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table (name = "client")
 @PrimaryKeyJoinColumn(name = "id_client")
+@DiscriminatorValue("client")
 public class Client extends Compte{
 
 	@Column(name = "name", columnDefinition = "VARCHAR(35)")
@@ -40,6 +42,7 @@ public class Client extends Compte{
 	private LocalDate naissance;
 	
 	@OneToMany (mappedBy = "clientPrincipal")
+	@JsonView(views.ViewConnexion.class)
 	private List <Reservation> resa;
 	
 	public Client() {
