@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -146,6 +147,37 @@ public class ListeReservationResource {
 			return listeReservatios;
 		}
 	
+	
+	
+//	@GetMapping("/search/{kw}")
+//	public List<ListeReservationDto> findByKwPage(@PathVariable String kw,
+//			@RequestParam(name="page",defaultValue = "0") int page,
+//            @RequestParam(name="size",defaultValue = "5")int size) {
+//		List<ListeReservationDto>  listeReservatios = new ArrayList<>();
+//		System.out.println(kw);
+//		if (!kw.isBlank()) {
+//			
+//			for (Reservation resa : daoReservation.findBykwPage(kw)) {
+//				ListeReservationDto  listeReservationDto = new ListeReservationDto();;
+//				listeReservationDto.setId(resa.getId());
+//				listeReservationDto.setNom(resa.getClientPrincipal().getNom());
+//				listeReservationDto.setPrenom(resa.getClientPrincipal().getPrenom());
+//				listeReservationDto.setEmail(resa.getClientPrincipal().getMail());
+//				listeReservationDto.setTelephone(resa.getClientPrincipal().getTelephone());
+//				listeReservationDto.setNaissance(resa.getClientPrincipal().getNaissance());
+//				listeReservationDto.setDateDebut_resa(resa.getDateDebut());
+//				listeReservationDto.setDateFin_resa(resa.getDateFin());
+//				if (resa.getPassagers()!=null) {
+//					listeReservationDto.setNombrePassager(resa.getPassagers().size());
+//				}
+//				listeReservatios.add(listeReservationDto);
+//			}
+//			
+//		}else {
+//			listeReservatios= findAll() ;
+//		}
+//			return listeReservatios;
+//		}
 
 	//aurevoir
 //	@GetMapping("/{id}/detail")
