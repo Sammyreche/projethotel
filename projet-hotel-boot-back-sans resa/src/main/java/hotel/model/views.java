@@ -9,6 +9,8 @@ public class views {
 	public static class ViewResa extends ViewBase {}
 	
 	public static class ViewResaPassager extends ViewResa {}
+	
+	public static class ViewConnexion extends ViewBase{}
 //	
 //	public static class ViewFiliere extends ViewBase {}
 //	

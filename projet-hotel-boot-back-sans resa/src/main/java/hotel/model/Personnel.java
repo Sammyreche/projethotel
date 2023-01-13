@@ -1,21 +1,25 @@
 package hotel.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table (name = "staff")
 @PrimaryKeyJoinColumn(name = "id_personnel")
+@DiscriminatorValue("personnel")
 public class Personnel extends Compte {
 	
 	@Column(name = "name", columnDefinition = "VARCHAR(35)")
+	@JsonView(views.ViewBase.class)
 	private String nom;
 	
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)")
+	@JsonView(views.ViewBase.class)
 	private String prenom;
 	
 	public Personnel() {
