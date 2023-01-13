@@ -19,7 +19,7 @@ export class ConnexionComponent {
       console.log(this.connexionService.compteConnecte)
       switch (resp.className) {
         case 'Admin': alert("connection admin ok ; mais pas encore page admin"); this.router.navigate(['']) ; break;
-        case 'Client':  this.router.navigate(['']) ; break;
+        case 'Client':  this.router.navigate(['listeResa']) ; break;
         case 'personel': this.router.navigate(['']) ; break;
       }
     });
