@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Reservation } from '../models/reservation.model';
-import { ResaService } from '../resa.service';
+import { ListeReservation, PageReservation } from '../models/reservation.model';
+import { ResaService } from './resa.service';
 
 @Component({
   selector: 'app-liste-reservation',
@@ -9,24 +9,39 @@ import { ResaService } from '../resa.service';
 })
 export class ListeReservationComponent {
   keyword! :string;
-  reservations: Array<Reservation> = [];
-  totalPages! : number;
-  currentpage! : number;
+  reservations: Array<ListeReservation> = [];
+  currentAction :string="all";
+  currentpage : number=0;
+  pageSize : number=5;
+  totalPages:number=0;
   
   constructor(public resaService : ResaService){
     this.reservations = this.resaService.reservations
   }
-  handlereservations() : Array<Reservation> {
+  list(): Array<ListeReservation> {
+    return this.resaService.findAll();
+  }
+  handleSearchReservations() : Array<ListeReservation> {
+   
     if(this.keyword) {
-      return this.reservations.filter(resa => resa.clientPrincipal.nom.indexOf(this.keyword) != -1 || resa.clientPrincipal.prenom.indexOf(this.keyword) != -1);
-    } 
-    return this.reservations
+      this.resaService.search(this.keyword)
+    } else this.resaService.load()
+    return null;
   }
-  handleSearchProducts(){
-    console.log(this.keyword)
-  }
-  handleDeleteProduct(r : Reservation ){
+
+  handleDeleteReservation(r : ListeReservation ){
     this.resaService.remove(r.id)
   }
+  // handlGetPageReservations(){
+  //   this.currentAction="all"
+  //   this.resaService.getPageReservations(this.currentpage,this.pageSize).subscribe({
+  //     next: (data: PageReservation) => {
+  //       this.reservations = data.reservations;
+  //       this.totalPages=data.totalPages;
+  //     }
+  //   });
+  //   throw new Error('Method not implemented.');
+  // }
+
   goToPage(i:number){}
 }

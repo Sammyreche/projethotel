@@ -13,7 +13,7 @@
             id="champR"
             [(ngModel)]="keyword"
           />
-          <button class="btn btn-info" (click)="handleSearchProducts()">
+          <button class="btn btn-info" (click)="handleSearchReservations()">
             <i class="bi bi-search"></i>
           </button>
         </div>
@@ -31,20 +31,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of handlereservations()">
+          <tr *ngFor="let p of list()">
             <td>{{ p.id }}</td>
-            <td>{{ p.clientPrincipal.nom }}</td>
-            <td>{{ p.clientPrincipal.prenom }}</td>
-            <td>{{ p.dateDebut }}</td>
-            <td>{{ p.dateFin }}</td>
-            <td class="text-center">{{ p.passagers.length }}</td>
+            <td>{{ p.nom }}</td>
+            <td>{{ p.prenom }}</td>
+            <td>{{ p.dateDebut_resa }}</td>
+            <td>{{ p.dateFin_resa }}</td>
+            <td class="text-center">{{ p.nombrePassager }}</td>
             <td>
               <button class="btn btn-primary">
                 <i class="bi bi-plus-circle-fill bi-lg"></i>
               </button>
             </td>
             <td>
-              <button (click)="handleDeleteProduct(p)" class="btn btn-danger">
+              <button
+                (click)="handleDeleteReservation(p)"
+                class="btn btn-danger"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>

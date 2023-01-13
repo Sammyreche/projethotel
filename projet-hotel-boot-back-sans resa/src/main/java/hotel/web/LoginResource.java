@@ -20,15 +20,15 @@ public class LoginResource {
 	@Autowired
 	private IDAOCompte daoCompte;
 	
-	@GetMapping("")
-	public Compte login(@PathVariable String login, String password) {
-		Compte clogin = daoCompte.findByLoginAndPassword(login,password);
-
-		if (clogin == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou mot de passe incorrect");
-		}
-
-		return clogin;
-	}
+//	@GetMapping("")
+//	public Compte login(@PathVariable String login, String password) {
+//		Compte clogin = daoCompte.findByLoginAndPassword(login,password);
+//
+//		if (clogin == null) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou mot de passe incorrect");
+//		}
+//
+//		return clogin;
+//	}
 
 }
