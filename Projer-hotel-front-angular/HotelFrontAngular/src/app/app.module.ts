@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { ListeReservationComponent } from './liste-reservation/liste-reservation.component';
 import { EditResaComponent } from './edit-resa/edit-resa.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { InscriptionService } from './inscription/inscription.service';
+import { ResaService } from './liste-reservation/resa.service';
 
 
 @NgModule({
@@ -15,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ListeReservationComponent,
     EditResaComponent,
     NavBarComponent,
+    InscriptionComponent,
     
   ],
   imports: [
@@ -25,7 +29,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HttpClientModule 
     
   ],
-  providers: [],
+  providers: [InscriptionService,ResaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
