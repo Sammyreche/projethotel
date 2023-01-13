@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { InscriptionService } from './inscription/inscription.service';
 import { ResaService } from './liste-reservation/resa.service';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ResaService } from './liste-reservation/resa.service';
     ListeReservationComponent,
     EditResaComponent,
     NavBarComponent,
+    ConnexionComponent,
     InscriptionComponent,
     
   ],
