@@ -30,6 +30,7 @@ import hotel.model.Reservation;
 import hotel.model.TypeActivite;
 import hotel.model.TypeLogement;
 import hotel.model.views;
+import hotel.web.dto.ListeReservationDto;
 import hotel.web.dto.ReservationActivitePassagerDTO;
 import hotel.web.dto.ReservationDto;
 
@@ -57,14 +58,65 @@ public class ReservationResource {
 		
 		daoReservation.findAll().forEach(t -> reservationDtos.add(findById(t.getId())));
 
-//		for (int i = 1; i < daoReservation.findAll().size(); i++) {
-//			if (findById(i)!=null) {
-//				reservationDtos.add(findById(i));
-//			}
-//		}
 
 		return reservationDtos;
 	}
+	
+//	@GetMapping("/liste")
+//	public List<ListeReservationDto> findalllight() {
+//
+//		
+//		List<ListeReservationDto>  listeReservatios = new ArrayList<>();
+//
+//		for (Reservation resa : daoReservation.findAll()) {
+//			ListeReservationDto  listeReservationDto = new ListeReservationDto();;
+//			listeReservationDto.setId(resa.getId());
+//			listeReservationDto.setNom(resa.getClientPrincipal().getNom());
+//			listeReservationDto.setPrenom(resa.getClientPrincipal().getPrenom());
+//			listeReservationDto.setEmail(resa.getClientPrincipal().getMail());
+//			listeReservationDto.setTelephone(resa.getClientPrincipal().getTelephone());
+//			listeReservationDto.setNaissance(resa.getClientPrincipal().getNaissance());
+//			listeReservationDto.setDateDebut_resa(resa.getDateDebut());
+//			listeReservationDto.setDateFin_resa(resa.getDateFin());
+//			if (resa.getPassagers()!=null) {
+//				listeReservationDto.setNombrePassager(resa.getPassagers().size());
+//			}
+//			listeReservatios.add(listeReservationDto);
+//		}
+//		
+//
+//		return listeReservatios;
+//	}
+	
+	
+//	@GetMapping("/liste/{id}")
+//	public ListeReservationDto findByIdLight(@PathVariable Integer id) {
+//
+//		ListeReservationDto listeReservationDto = new ListeReservationDto();
+//		Optional<Reservation> optReservation = daoReservation.findById(id);
+//
+//		if (optReservation.isEmpty()) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//		}
+//		
+//
+//		for (Reservation resa : daoReservation.findAll()) {
+//			listeReservationDto.setId(optReservation.get().getId());
+//			listeReservationDto.setNom(optReservation.get().getClientPrincipal().getNom());
+//			listeReservationDto.setPrenom(optReservation.get().getClientPrincipal().getPrenom());
+//			listeReservationDto.setEmail(optReservation.get().getClientPrincipal().getMail());
+//			listeReservationDto.setTelephone(optReservation.get().getClientPrincipal().getTelephone());
+//			listeReservationDto.setNaissance(optReservation.get().getClientPrincipal().getNaissance());
+//			listeReservationDto.setDateDebut_resa(optReservation.get().getDateDebut());
+//			listeReservationDto.setDateFin_resa(optReservation.get().getDateFin());
+//			if (optReservation.get().getPassagers()!=null) {
+//				listeReservationDto.setNombrePassager(optReservation.get().getPassagers().size());
+//			}
+//		}
+//		
+//
+//		return listeReservationDto;
+//	}
 
 	//aurevoir
 	@GetMapping("/{id}/detail")
@@ -117,6 +169,7 @@ public class ReservationResource {
 		if (optReservation.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
+		
 
 		return optReservation.get();
 	}
