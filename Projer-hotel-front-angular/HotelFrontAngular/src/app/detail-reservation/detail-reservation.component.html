@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1>Detail de la reservation</h1>
+    <!-- {{ reservations | json }} -->
+    <div class="col col-md-6 offset-md-3 form-floating">
+      <div class="input-group">
+        <label class="input-group-text"> Numero de la reservation : </label>
+        <div class="form-control text-center">{{ reservations.id }}</div>
+      </div>
+      <div class="input-group">
+        <label class="input-group-text"> Date debut : </label>
+        <div class="form-control text-center">
+          {{ reservations.dateDebut_resa }}
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-group-text"> Date fin : </label>
+        <div class="form-control text-center">
+          {{ reservations.dateFin_resa }}
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-group-text"> Type logement </label>
+        <div class="form-control text-center">
+          {{ reservations.typeLogement }}
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="container">
+      <div class="card mt-3">
+        <div class="card-header bg-info text-white">
+          <span class="h2">Liste des passagers</span>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Age</th>
+                <th>Activite</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of reservations?.passagers">
+                <td>{{ p.nom_passager }}</td>
+                <td>{{ p.prenom_passager }}</td>
+                <td>{{ p.naissance_passager }}</td>
+                <td>{{ p.typeActivite }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <h2>Liste des activités</h2>
+    <div class="container" *ngFor="let p of reservations?.passagers">
+      <div class="card mt-3">
+        <div class="card-header bg-info text-white">
+          <span class="h2">Activité du passager {{ p.id_passager }} </span>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <tr>
+              <td>Nom du passager</td>
+              <td class="form-control">{{ p.nom_passager }}</td>
+            </tr>
+            <tr>
+              <td>Date d'activité</td>
+              <td class="form-control">{{ p.date }}</td>
+            </tr>
+            <tr>
+              <td>Nombre</td>
+              <td class="form-control">{{ p.nombre }}</td>
+            </tr>
+            <tr>
+              <td>Type d'activite</td>
+              <td class="form-control">{{ p.typeActivite }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn">
+      <button class="btn btn-primary text-center"><a> Modifier </a></button>
+    </div>
+  </body>
+</html>

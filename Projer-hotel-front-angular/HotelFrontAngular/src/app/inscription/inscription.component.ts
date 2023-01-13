@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Inscription } from '../models/inscription.models';
+
 import { InscriptionService } from '../inscription/inscription.service';
+import { Inscription } from '../models/inscription.models';
 
 @Component({
   selector: 'app-inscription',
