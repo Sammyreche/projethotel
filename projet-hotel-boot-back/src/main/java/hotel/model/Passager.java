@@ -45,6 +45,7 @@ public class Passager {
 	
 	@ManyToOne (cascade = CascadeType.REFRESH)
 	@JoinColumn(name ="resa")
+	@JsonView(Views.ViewBase.class)
 	private Reservation resa;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)

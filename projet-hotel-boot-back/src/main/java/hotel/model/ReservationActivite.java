@@ -15,19 +15,24 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table (name = "reservation_activities")
 public class ReservationActivite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	
 	@Column(name = "date")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate date;
 	
 	@OneToOne (orphanRemoval = true ,cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "passager")
+	@JsonView(Views.ViewBase.class)
 	private Passager passager;
 	
 	@ManyToOne(cascade = CascadeType.REMOVE)

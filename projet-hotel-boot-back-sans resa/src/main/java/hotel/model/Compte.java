@@ -9,10 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 @Entity
 //@Table(name="compte", uniqueConstraints=@UniqueConstraint(columnNames = { "login","password"}) ) 
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('admin','personnel','client')")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "className")
 public abstract class Compte {
 	
 	@Id
