@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ListeReservationComponent } from './liste-reservation/liste-reservation.component';
 import { EditResaComponent } from './edit-resa/edit-resa.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ListeReservationComponent,
     EditResaComponent,
     NavBarComponent,
+    ConnexionComponent,
     
   ],
   imports: [
