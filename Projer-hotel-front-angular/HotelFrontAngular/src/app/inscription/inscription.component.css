@@ -1,0 +1,54 @@
+@media(max-width : 576px)
+{
+  body{
+    width:100%;
+
+  }
+}
+
+@media(min-width : 576px)  and (max-width:992px)
+{
+  body{
+    width:100%;
+
+  }
+
+}
+
+@media(min-width : 992px)
+{
+  body{
+    width:100%;
+  }
+
+}
+.vh-100
+{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.typeCompte
+{
+display:flex;
+justify-content: center;
+}
+
+.btn.btn-primary.btn-lg
+{
+color:black;
+border:solid #fdcdba 2px;
+}
+
+.d-flex.justify-content-center.mx-4.mb-3.mb-lg-4
+{
+display:flex;
+justify-content: space-around!important;
+}
+
+
+.select{
+border: solid 3px #fdcdba;
+background-color: #fdcdba;
+border-radius: 15%;
+}
