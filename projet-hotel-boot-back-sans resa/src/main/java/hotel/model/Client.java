@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -39,6 +40,7 @@ public class Client extends Compte{
 	
 	@Column(name = "birthdate", nullable = false)
 	@JsonView(views.ViewBase.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate naissance;
 	
 	@OneToMany (mappedBy = "clientPrincipal")
