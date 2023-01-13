@@ -30,7 +30,6 @@ import hotel.model.Reservation;
 import hotel.model.TypeActivite;
 import hotel.model.TypeLogement;
 import hotel.model.views;
-import hotel.web.dto.ListeReservationDto;
 import hotel.web.dto.ReservationActivitePassagerDTO;
 import hotel.web.dto.ReservationDto;
 

@@ -8,6 +8,7 @@ import { ListeReservationComponent } from './liste-reservation/liste-reservation
 import { DetailReservationComponent } from './detail-reservation/detail-reservation.component';
 import { EditResaComponent } from './edit-resa/edit-resa.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     DetailReservationComponent,
     EditResaComponent,
     NavBarComponent,
+    ConnexionComponent,
     
   ],
   imports: [
