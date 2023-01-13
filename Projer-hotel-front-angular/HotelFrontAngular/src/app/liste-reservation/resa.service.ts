@@ -44,16 +44,6 @@ findAll(): Array<ListeReservation> {
   return this.reservations;
 }
 
-public getPageReservations(page :number,size : number) : Observable<PageReservation> {
-  let index = page*size;
-  let totalPages = ~~(this.reservations.length/size);
-  if (this.reservations.length%size != 0) {
-    totalPages++;
-  }
-  let PageReservations = this.reservations.slice(index,index+size);
-  return of ({page:page,size:size,totalPages:totalPages,reservations : PageReservations});
-}
-
 
 
 search(kw : string) : void{
@@ -77,10 +67,23 @@ remove(id: number): void {
 //      }
 // }
 
+public getPageReservations(page :number,size : number) : Observable<PageReservation> {
+  let index = page*size;
+  let totalPages = ~~(this.reservations.length/size);
+  if (this.reservations.length%size != 0) {
+    totalPages++;
+  }
+  let PageReservations = this.reservations.slice(index,index+size);
+  return of ({page:page,size:size,totalPages:totalPages,reservations : PageReservations});
+} 
+
+
+
+
 public load(): void {
   this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
     this.reservations = response;
-    
+    console.log(response)
   });
 }
 }

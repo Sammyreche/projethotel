@@ -10,6 +10,7 @@ import { ResaService } from './resa.service';
 export class ListeReservationComponent {
   keyword! :string;
   reservations: Array<ListeReservation> = [];
+  pageReservation : PageReservation;
   currentAction :string="all";
   currentpage : number=0;
   pageSize : number=5;
@@ -18,12 +19,24 @@ export class ListeReservationComponent {
   constructor(public resaService : ResaService){
     this.reservations = this.resaService.reservations
   }
+  // list(): Array<ListeReservation> {
+  //   this.reservations = this.resaService.findAll()
+  //   return this.reservations;
+  // }
   list(): Array<ListeReservation> {
-    return this.resaService.findAll();
+    this.resaService.findAll()
+    this.resaService.getPageReservations(this.currentpage,this.pageSize).subscribe(resp=>{
+      this.reservations = resp.reservations;
+      this.totalPages=resp.totalPages;
+      this.currentpage=resp.page
+    })
+    return this.reservations;
   }
+
   handleSearchReservations() : Array<ListeReservation> {
    
     if(this.keyword) {
+      this.currentpage=0
       this.resaService.search(this.keyword)
     } else this.resaService.load()
     return null;
@@ -43,5 +56,11 @@ export class ListeReservationComponent {
   //   throw new Error('Method not implemented.');
   // }
 
-  goToPage(i:number){}
+  goToPage(i:number){
+    this.currentpage=i;
+    if (this.currentAction=="all") {
+      this.list();
+    } else this.list();
+
+  }
 }
