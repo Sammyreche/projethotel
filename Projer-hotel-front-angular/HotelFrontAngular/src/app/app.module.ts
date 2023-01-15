@@ -10,6 +10,7 @@ import { EditResaComponent } from './edit-resa/edit-resa.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-reservation.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     EditResaComponent,
     NavBarComponent,
     ConnexionComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    NouvelleReservationComponent
     
   ],
   imports: [
