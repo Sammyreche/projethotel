@@ -97,7 +97,17 @@
     </div>
 
     <div class="btn">
-      <button class="btn btn-primary text-center"><a> Modifier </a></button>
+      <!-- <button (click)="navigator()" class="btn btn-primary text-center">
+        Modifier
+      </button> -->
+      <button
+        [routerLink]="['/nouvelResa']"
+        [queryParams]="{ id: reservations.id }"
+        routerLinkActive="active"
+        class="btn btn-primary text-center"
+      >
+        Modifier
+      </button>
     </div>
   </body>
 </html>

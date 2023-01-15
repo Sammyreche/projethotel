@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 //@Table(name="compte", uniqueConstraints=@UniqueConstraint(columnNames = { "login","password"}) ) 
@@ -20,6 +21,7 @@ public abstract class Compte {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(views.ViewBase.class)
 	protected Integer id;
 	
 	@Column(name = "login", length= 50, nullable = false) 

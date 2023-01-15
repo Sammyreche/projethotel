@@ -14,8 +14,8 @@ export class NouvellReservationService {
         this.serviceUrl = appConfig.backEndUrl + "reservations";
    }
 
-      create(reservation: Detailresa, compte : Compte): void {
-      this.http.post<Detailresa>(this.serviceUrl+"/biss", reservation).subscribe(resp => {
+      create(reservation: Detailresa, Id_Compte : number): void {
+      this.http.post<Detailresa>(this.serviceUrl+"/biss/"+Id_Compte, reservation).subscribe(resp => {
         console.log(reservation)
        });
     }

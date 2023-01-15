@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Injectable } from "@angular/core";
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { Observable } from "rxjs";
 import { AppConfigService } from "../app-config.service";
 import { Detailresa, Passager } from "../models/detailresa.model";
@@ -21,16 +22,37 @@ export class DetailReservationComponent {
  // this.reservations.passagers = new Array<Passager>();
 
   
-  constructor(public resaService : resaDetailHttpService ){
+  constructor(public resaService : resaDetailHttpService,private router: Router ,private route: ActivatedRoute){
    // this.reservations = this.resaService.reservations;
   //  this.reservations.passagers = new Array<Passager>()
   }
 
  ngOnInit():void{
-   this.resaService.load(5).subscribe(rep=>{
-    this.reservations =rep
-    console.log(rep)
-  })
+
+  this.route.queryParams.subscribe(paramss=> {
+  
+    let recup : any = + paramss['id'] ||0;
+    this.resaService.load(recup).subscribe(rep=>{
+      this.reservations =rep
+      console.log(rep)
+    })
+    //   resaService.findById(recup).subscribe(rep=>{
+    //     if (rep!=null) {
+    //       rep.passagers.forEach(element => {
+    //         element.affichageActiviter=false
+    //       });
+    //       this.formReservation=rep
+         
+    //       if (this.currentAction = "inscription") {
+    //         this.currentAction = "edit"
+
+    //       }
+    //     }
+    // })
+    console.log(recup);
+    
+  });
+ 
  }
   // list(): Array<ListeReservation> {
   //   this.reservations = this.resaService.findAll()
@@ -40,7 +62,15 @@ export class DetailReservationComponent {
    this.resaService.findById(id).subscribe(rep=>{
     this.reservations = rep
    })
-   
     return this.reservations;
   }
+
+
+ //navigator(){ 
+ // [RouterLink]="['/nouvelResa', this.reservations]"
+//        RouterLinkActive="active"
+//this.router.navigate(['/nouvelResa', 43])
+// }
+
+
 }

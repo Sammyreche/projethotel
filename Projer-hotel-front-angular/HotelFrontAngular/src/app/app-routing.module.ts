@@ -13,7 +13,8 @@ const routes: Routes = [
 {path: "login",component: ConnexionComponent},
 {path: "detailResa",component: DetailReservationComponent},
 {path: "inscription",component: InscriptionComponent},
-{path: "nouvelResa",component: NouvelleReservationComponent}];
+{path: "nouvelResa",component: NouvelleReservationComponent},
+{path: "nouvelResa/:id",component: NouvelleReservationComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -31,7 +31,6 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr *ngFor="let p of list()">
             <td>{{ p.id }}</td>
             <td>{{ p.nom }}</td>
@@ -40,7 +39,12 @@
             <td>{{ p.dateFin_resa }}</td>
             <td class="text-center">{{ p.nombrePassager }}</td>
             <td>
-              <button class="btn btn-primary">
+              <button
+                [routerLink]="['/detailResa']"
+                [queryParams]="{ id: p.id }"
+                routerLinkActive="active"
+                class="btn btn-primary"
+              >
                 <i class="bi bi-plus-circle-fill bi-lg"></i>
               </button>
             </td>

@@ -16,6 +16,7 @@ export class ConnexionComponent {
   auth(): void {
     this.connexionService.findByLoginAndPassword(this.login, this.password).subscribe(resp => {
       this.connexionService.compteConnecte = resp;
+      sessionStorage.setItem('connected',JSON.stringify(structuredClone(resp)))
       console.log(this.connexionService.compteConnecte)
       switch (resp.className) {
         case 'Admin': alert("connection admin ok ; mais pas encore page admin"); this.router.navigate(['']) ; break;
