@@ -74,7 +74,6 @@ export class NouvelleReservationComponent {
 
 
     saveReservation(){
-      console.log("ok")
-      this.nouvellResaService.create(this.formReservation)
+      this.nouvellResaService.create(this.formReservation,this.compte)
     }
 }
