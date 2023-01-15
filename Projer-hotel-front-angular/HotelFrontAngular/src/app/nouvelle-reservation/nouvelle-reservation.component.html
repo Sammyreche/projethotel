@@ -107,14 +107,14 @@
           </div>
           <div class="col-5">
             <div class="form-check form-switch ms-5">
-              <label class="form-check-label" for="EditActi">
+              <label class="form-check-label" for="'EditActi'+{{formReservation.passagers.indexOf(p)+1}}">
                 Ajouter des activitées
               </label>
               <input
-                (click)="handleSetAffichageActiviter()"
+                (click)="handleSetAffichageActiviter(p)"
                 class="form-check-input form-check-lg"
                 type="checkbox"
-                id="EditActi"
+                id="'EditActi'+{{formReservation.passagers.indexOf(p)+1}}"
               />
             </div>
             <div class="row mt-4 ms-5">
@@ -132,7 +132,7 @@
       </div>
 
       <!-- activite -->
-      <div *ngIf="editActiviter" class="col-8 offset-2 mb-3">
+      <div *ngIf="p.affichageActiviter" class="col-8 offset-2 mb-3">
         <i class="bi bi-caret-down-fill offset-6"></i>
         <div class="card">
           <div class="card-header">Activité du passager 1 :</div>
@@ -202,7 +202,7 @@
     </div>
   </div>
   <div class="">
-    <button
+    <button (click)="saveReservation()"
       type="button"
       class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3"
     >

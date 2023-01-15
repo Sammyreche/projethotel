@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConnexionService } from '../connexion/connexion.service';
+import { NouvellReservationService } from './nouvell-reservation.Service';
 import { Compte } from '../models/compte.model';
 import { Detailresa, Passager } from '../models/detailresa.model';
 
@@ -17,7 +18,7 @@ export class NouvelleReservationComponent {
   editActiviter : boolean = false
   compte : Compte = this.compteService.compteConnecte;
   NbrPasssager =0;
-  constructor(private compteService : ConnexionService){
+  constructor(private compteService : ConnexionService, private nouvellResaService : NouvellReservationService){
    this.formReservation.passagers = new Array<Passager>() 
    //this.formReservation.passagers.length
   }
@@ -39,10 +40,10 @@ export class NouvelleReservationComponent {
         }
       } 
     }
-    handleSetAffichageActiviter(){
-      if (this.editActiviter==false) {
-        this.editActiviter=true
-      }else this.editActiviter=false
+    handleSetAffichageActiviter(p : Passager){
+      if (p.affichageActiviter==false) {
+        p.affichageActiviter=true
+      }else p.affichageActiviter=false
     }
     ajouterPassager(){
       this.formReservation.passagers.push(structuredClone(this.passager))
@@ -69,5 +70,11 @@ export class NouvelleReservationComponent {
          p.nombre=null
        }
       
+    }
+
+
+    saveReservation(){
+      console.log("ok")
+      this.nouvellResaService.create(this.formReservation)
     }
 }
