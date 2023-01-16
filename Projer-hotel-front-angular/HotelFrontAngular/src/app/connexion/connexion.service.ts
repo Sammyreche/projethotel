@@ -22,4 +22,10 @@ export class ConnexionService {
     return this.http.post<Compte>(this.serviceUrl , authDTO);
   }
 
+  // compteEnregister(login: string, password: string){
+  //   this.findByLoginAndPassword(login, this.password).subscribe(resp=>{
+  //     this.compteConnecte =resp;
+  //   }) 
+  // }
+
 }

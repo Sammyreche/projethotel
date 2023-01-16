@@ -1,3 +1,5 @@
+//import { jsonIgnore } from "json-ignore";
+
 export class Detailresa {
     id:             number;
     dateDebut_resa: Date;
@@ -18,6 +20,8 @@ export class Passager {
     nombre:             number;
     typeActivite:       string;
     id_prestation:      number;
+    //@jsonIgnore()
+    affichageActiviter:  boolean = false;
     constructor(){
     }
 }

@@ -15,6 +15,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
@@ -32,3 +33,9 @@
     "strictTemplates": true
   }
 }
+// {
+//   "compilerOptions": {
+//       "experimentalDecorators": true,
+//       "emitDecoratorMetadata": true
+//   }
+// }

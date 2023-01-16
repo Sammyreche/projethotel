@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../app-config.service';
-import { Inscription } from '../models/inscription.models';
+import { Client } from '../models/compte.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,9 @@ export class InscriptionService {
    }
 
 
-     create(inscription: Inscription): void {
-      this.http.put<Inscription>(this.serviceUrl, inscription).subscribe(resp => {
+     create(inscription: Client): void {
+      console.log(inscription)
+      this.http.put<Client>(this.serviceUrl, inscription).subscribe(resp => {
         console.log(inscription)
        });
     }
