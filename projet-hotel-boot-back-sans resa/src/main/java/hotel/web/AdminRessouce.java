@@ -26,9 +26,9 @@ import hotel.model.Reservation;
 import hotel.model.views;
 
 @RestController
-@RequestMapping("/list")
+@RequestMapping("/admin")
 @CrossOrigin("*")
-public class PersonnelRessource {
+public class AdminRessouce {
 	
 	@Autowired
 	private IDAOClient daoClient;
@@ -57,7 +57,7 @@ public class PersonnelRessource {
 	
 	@PutMapping("/client/{id}")
 	@JsonView(views.ViewConnexion.class)
-	public Client update(@PathVariable Integer id, @RequestBody Client client) {
+	public Client updateClient(@PathVariable Integer id, @RequestBody Client client) {
 		if (id != client.getId() || !daoClient.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
@@ -67,15 +67,8 @@ public class PersonnelRessource {
 		return client;
 	}
 	
-	@GetMapping("/personnel")
-	@JsonView(views.ViewConnexion.class)
-	public List<Personnel> findAllPersonnel(){
-		List<Personnel> personnels = daoPersonnel.findAll();
-		return personnels ;
-	}
-	
 	@DeleteMapping("/client/{id}")
-	public void delete(@PathVariable Integer id) {
+	public void deleteClient(@PathVariable Integer id) {
 		if (!daoClient.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
@@ -89,6 +82,13 @@ public class PersonnelRessource {
 		daoClient.deleteById(id);
 	}
 	
+	@GetMapping("/personnel")
+	@JsonView(views.ViewConnexion.class)
+	public List<Personnel> findAllPersonnel(){
+		List<Personnel> personnels = daoPersonnel.findAll();
+		return personnels ;
+	}
+	
 	@GetMapping("/personnel/{id}")
 	@JsonView(views.ViewConnexion.class)
 	public Personnel findByIdPersonnel(@PathVariable Integer id) {
@@ -99,6 +99,26 @@ public class PersonnelRessource {
 		}
 
 		return personnel.get();
+	}
+	
+	@PutMapping("/personnel/{id}")
+	@JsonView(views.ViewConnexion.class)
+	public Personnel updatePersonnel(@PathVariable Integer id, @RequestBody Personnel personnel) {
+		if (id != personnel.getId() || !daoPersonnel.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+
+		personnel = daoPersonnel.save(personnel);
+
+		return personnel;
+	}
+	
+	@DeleteMapping("/personnel/{id}")
+	public void deletePersonnel(@PathVariable Integer id) {
+		if (!daoPersonnel.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}		
+		daoPersonnel.deleteById(id);
 	}
 
 }
