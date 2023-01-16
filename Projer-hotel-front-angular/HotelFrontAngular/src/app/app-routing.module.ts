@@ -6,6 +6,7 @@ import { EditResaComponent } from './edit-resa/edit-resa.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ListeReservationComponent } from './liste-reservation/liste-reservation.component';
 import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-reservation.component';
+import { PersonnelComponent } from './personnel/personnel.component';
 
 const routes: Routes = [
 {path: "listeResa", component: ListeReservationComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
 {path: "login",component: ConnexionComponent},
 {path: "detailResa",component: DetailReservationComponent},
 {path: "inscription",component: InscriptionComponent},
+{path: "personnel",component: PersonnelComponent},   //same as nav-bar
 {path: "nouvelResa",component: NouvelleReservationComponent}];
 
 @NgModule({

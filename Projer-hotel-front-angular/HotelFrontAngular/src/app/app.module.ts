@@ -13,6 +13,7 @@ import { ResaService } from './liste-reservation/resa.service';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-reservation.component';
+import { PersonnelComponent } from './personnel/personnel.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-re
     NavBarComponent,
     ConnexionComponent,
     InscriptionComponent,
-    NouvelleReservationComponent
+    NouvelleReservationComponent,
+    PersonnelComponent
     
   ],
   imports: [

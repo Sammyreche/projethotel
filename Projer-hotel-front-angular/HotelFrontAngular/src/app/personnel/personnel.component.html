@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header">Liste des personnels :</div>
+      <div class="card-body">
+        <table class="table">
+             <thead>
+                 <tr>
+                  <!-- <th>Identifiant</th> -->
+                 <th>Nom</th>
+                 <th>Prenom</th>
+                 </tr>
+            </thead>
+       <tbody>
+      <tr *ngFor="let p of list()">
+        <!-- <td>{{compte.personnel.id}}</td> -->
+        <td>{{p.nom}}</td>
+        <td>{{p.prenom}}</td>
+        <td>
+            <!-- <div class="btn-group btn-group-sm">
+                <a class="btn btn-primary" (click)="edit(personnel.id)">Rajouter Personnel<i
+                        class="bi bi-pencil-square"></i></a>
+                <a class="btn btn-danger" (click)="remove(personnel.id)">Delete Personnel<i class="bi bi-trash"></i></a>
+            </div> -->
+        </td>
+      </tr>
+    </tbody>
+</table>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i class="bi bi-plus-square"></i></a>
+    </div>
+    <div class="card mt-3" *ngIf="personnel">
+        <div class="card-header bg-primary text-white display-6">Edition d'un personnel</div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" [(ngModel)]="personnel.id" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom:</label> <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="personnel.nom" />
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom:</label> <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="personnel.prenom" />
+            </div>
+    
+        </div>
+        <div class="card-footer">
+            <div class="btn-group btn-group-lg float-right">
+                <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+                <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+            </div>
+        </div>
+    </div>
