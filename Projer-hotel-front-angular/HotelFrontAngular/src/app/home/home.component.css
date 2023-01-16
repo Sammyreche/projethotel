@@ -1,0 +1,75 @@
+.navbar {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1d7c300;
+  width: 100%;
+}
+#reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.form-select,
+#dateDep,
+#dateArv,
+.bootstrap-select > .dropdown-toggle {
+  height: 35px;
+  /* border-bottom-right-radius: 20px !important;
+        border-top-right-radius: 20px !important; */
+  border-radius: 20px !important;
+
+  border: #f1d7c3;
+  background-color: rgb(244, 242, 238) !important;
+}
+.btn.dropdown-toggle.bs-placeholder.btn-light {
+  margin-top: 4px;
+}
+#jeReserve {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  font-style: italic;
+}
+/* #formulair {
+   display: flex;
+   justify-content: space-around;
+ } */
+.bi-calendar-day {
+  height: 35px;
+  border: #f1d7c3;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: rgb(244, 242, 238);
+  margin-bottom: 4px;
+}
+.bi-activity {
+  height: 35px;
+  border: #f1d7c3;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: rgb(244, 242, 238);
+  margin-top: 4px;
+}
+.selectpicker > btn {
+  border-radius: 0%;
+}
+
+.testAnimation {
+  animation-duration: 500ms;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    /* width: 300%; */
+  }
+
+  to {
+    margin-top: 0%;
+    /* width: 100%; */
+  }
+}
