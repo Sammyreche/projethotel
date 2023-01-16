@@ -3,6 +3,11 @@
   background-color: #f1d7c300;
   width: 100%;
 }
+
+.navbar.transparent {
+  background-color: #f1d7c3ff;
+}
+
 #reservation {
   display: flex;
   flex-direction: column;

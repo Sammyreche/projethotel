@@ -34,7 +34,7 @@ export class DetailReservationComponent {
     let recup : any = + paramss['id'] ||0;
     this.resaService.load(recup).subscribe(rep=>{
       this.reservations =rep
-      console.log(rep)
+      console.log(paramss)
     })
     //   resaService.findById(recup).subscribe(rep=>{
     //     if (rep!=null) {
