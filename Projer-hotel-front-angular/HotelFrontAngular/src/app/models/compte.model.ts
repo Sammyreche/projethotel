@@ -1,4 +1,4 @@
-export interface Compte{
+export class Compte{
     className: String;
     id : number;
     login : string;
@@ -6,39 +6,37 @@ export interface Compte{
 
 }
 
- export interface Passager {
+ export class Passager {
      id:     number;
      nom:    string;
      prenom: string;
  }
 
- export interface Reservation {
+ export class Reservation {
      id:              string;
      clientPrincipal: Client;
      passagers:       Passager[];
      dateDebut:       string;
      dateFin:         string;
  }
-export interface Client extends Compte{
-className: String;
+export class Client extends Compte{
 nom : string;
 prenom : string;
-email : string;
+mail : string;
 telephone : string;
 naissance : string;
 listResa : Array<Reservation>;
 
 }
-export interface Personnel extends Compte{
-className : string;
+export class Personnel extends Compte{
+
 nom : string;
 prenom: string;
 
 
 
 }
-export interface Admin extends Compte{
-    className : string;
+export class Admin extends Compte{
     nom : string;
     prenom: string;
 }

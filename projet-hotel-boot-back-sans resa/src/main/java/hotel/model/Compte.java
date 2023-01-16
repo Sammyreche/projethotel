@@ -25,8 +25,9 @@ public abstract class Compte {
 	protected Integer id;
 	
 	@Column(name = "login", length= 50, nullable = false) 
+	@JsonView(views.ViewBase.class)
 	protected String login;
-	
+	@JsonView(views.ViewBase.class)
 	@Column(name = "password", length= 20, nullable = false)
 	protected String password;
 	

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
+
 import { InscriptionService } from '../inscription/inscription.service';
-import { Inscription } from '../models/inscription.models';
+import { Client } from '../models/compte.model';
+
 
 @Component({
   selector: 'app-inscription',
@@ -10,7 +12,7 @@ import { Inscription } from '../models/inscription.models';
 })
 export class InscriptionComponent {
 
-  formInscription: Inscription = new Inscription();
+  formInscription: Client= new Client ;
 
 
 constructor(public InscriptionService : InscriptionService){
@@ -18,6 +20,7 @@ constructor(public InscriptionService : InscriptionService){
 }
 
   save(): void {
+    console.log(this.formInscription)
      this.InscriptionService.create(this.formInscription);
   }
 
