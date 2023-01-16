@@ -8,7 +8,7 @@ import { ListeReservationComponent } from './liste-reservation/liste-reservation
 
 const routes: Routes = [
 {path: "listeResa", component: ListeReservationComponent},
-{path: "login",component: ConnexionComponent}];
+{path: "login",component: ConnexionComponent},
 {path: "editResa", component: EditResaComponent},
 {path: "login",component: ConnexionComponent},
 {path: "detailResa",component: DetailReservationComponent},
