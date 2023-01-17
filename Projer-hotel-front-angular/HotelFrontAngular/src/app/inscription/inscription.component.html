@@ -124,8 +124,16 @@
                         [(ngModel)]="formInscription.className"
                       >
                         <option value="Client" selected>Client</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Personnel">Personnel</option>
+
+                        <option
+                          *ngIf="
+                            connexionService.compteConnecte?.className ==
+                            'Admin'
+                          "
+                          value="Personnel"
+                        >
+                          Personnel
+                        </option>
                       </select>
                     </div>
                   </div>

@@ -42,6 +42,11 @@
       >Nouvelle Reservation</a
     >
   </li>
+  <li *ngIf="connectedCompte?.className == 'Admin'" class="nav-item">
+    <a class="nav-link" [routerLink]="['/personnel']" routerLinkActive="active"
+      >Personnel</a
+    >
+  </li>
   <!-- <li class="nav-item dropdown">
     <a
       class="nav-link dropdown-toggle"
