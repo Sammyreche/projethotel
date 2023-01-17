@@ -149,6 +149,37 @@ public class ListeReservationResource {
 	
 	
 	
+	
+	@GetMapping("/client/{id}")
+	public List<ListeReservationDto> findByClientId(@PathVariable Integer id) {
+
+		
+		List<ListeReservationDto>  listeReservatios = new ArrayList<>();
+
+		for (Reservation resa : daoReservation.findByClientId(id).get()) {
+			ListeReservationDto  listeReservationDto = new ListeReservationDto();;
+			listeReservationDto.setId(resa.getId());
+			listeReservationDto.setNom(resa.getClientPrincipal().getNom());
+			listeReservationDto.setPrenom(resa.getClientPrincipal().getPrenom());
+			listeReservationDto.setEmail(resa.getClientPrincipal().getMail());
+			listeReservationDto.setTelephone(resa.getClientPrincipal().getTelephone());
+			listeReservationDto.setNaissance(resa.getClientPrincipal().getNaissance());
+			listeReservationDto.setDateDebut_resa(resa.getDateDebut());
+			listeReservationDto.setDateFin_resa(resa.getDateFin());
+			if (resa.getPassagers()!=null) {
+				listeReservationDto.setNombrePassager(resa.getPassagers().size());
+			}
+			listeReservatios.add(listeReservationDto);
+		}
+		
+
+		return listeReservatios;
+	}
+
+	
+	
+	
+	
 //	@GetMapping("/search/{kw}")
 //	public List<ListeReservationDto> findByKwPage(@PathVariable String kw,
 //			@RequestParam(name="page",defaultValue = "0") int page,

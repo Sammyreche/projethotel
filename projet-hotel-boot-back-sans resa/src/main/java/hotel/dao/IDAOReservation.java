@@ -17,6 +17,9 @@ public interface IDAOReservation extends JpaRepository<Reservation,Integer> {
 	
 	@Query("SELECT r from Reservation r where  r.clientPrincipal.nom like %:kw% or r.clientPrincipal.prenom like %:kw%")
 	public Page<Reservation> findBykwPage(String kw,Pageable pageable);
+	
+	@Query("SELECT r from Reservation r where  r.clientPrincipal.id like :id")
+	public Optional<List<Reservation>>  findByClientId(Integer id);
 
 }
 

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnexionService } from '../connexion/connexion.service';
-import { NouvellReservationService } from './nouvell-reservation.Service';
+import { resaDetailHttpService } from '../detail-reservation/resaDetailHttp.service';
 import { Compte } from '../models/compte.model';
 import { Detailresa, Passager } from '../models/detailresa.model';
+import { NouvellReservationService } from './nouvell-reservation.service';
 
 @Component({
   selector: 'app-nouvelle-reservation',
@@ -10,6 +12,8 @@ import { Detailresa, Passager } from '../models/detailresa.model';
   styleUrls: ['./nouvelle-reservation.component.css']
 })
 export class NouvelleReservationComponent {
+ currentAction = "inscription"
+  //currentAction = "edit"
   reservation : Detailresa = new Detailresa();
   passager = new Passager();
   formReservation : Detailresa = new Detailresa();
@@ -17,11 +21,52 @@ export class NouvelleReservationComponent {
   editPassager : boolean = false
   editActiviter : boolean = false
   compte : Compte = this.compteService.compteConnecte;
+  //compte : Compte = JSON.parse(sessionStorage.getItem('connected'));
+  //let compteJson = JSON.stringify(compte);
+ // sessionStorage.setItem('user', compteJson);
+
   NbrPasssager =0;
-  constructor(private compteService : ConnexionService, private nouvellResaService : NouvellReservationService){
+  constructor(private compteService : ConnexionService,
+    private nouvellResaService : NouvellReservationService,
+    private route: ActivatedRoute,
+    public resaService : resaDetailHttpService){
    this.formReservation.passagers = new Array<Passager>() 
-   //this.formReservation.passagers.length
+
+  // this.route.params.subscribe(param => {
+
+  //   // resaService.findById([param]).subscribe(rep=>{
+  //   //   this.formReservation=rep
+  //   // })
+  //   console.log(param);
+  // });
+
+  this.route.queryParams.subscribe(paramss=> {
+  
+    let recup : any = + paramss['id'] ||0;
+      resaService.findById(recup).subscribe(rep=>{
+        if (rep!=null) {
+          rep.passagers.forEach(element => {
+            element.affichageActiviter=false
+          });
+          this.formReservation=rep
+         
+          if (this.currentAction = "inscription") {
+            this.currentAction = "edit"
+
+          }
+        }
+      
+      
+
+    })
+    console.log(recup);
+    
+  });
+
   }
+
+
+
   onInit(){
     this.NbrPasssager = this.formReservation.passagers.length;
 
@@ -41,6 +86,10 @@ export class NouvelleReservationComponent {
       } 
     }
     handleSetAffichageActiviter(p : Passager){
+      // if (p.affichageActiviter==undefined) {
+      //   p.affichageActiviter==false
+      // }else
+      console.log(p.affichageActiviter)
       if (p.affichageActiviter==false) {
         p.affichageActiviter=true
       }else p.affichageActiviter=false
@@ -74,7 +123,10 @@ export class NouvelleReservationComponent {
 
 
     saveReservation(){
+      this.nouvellResaService.create(this.formReservation,this.compte.id)
+    }
+    logout(){
       console.log("ok")
-      this.nouvellResaService.create(this.formReservation)
+      this.compteService.logout()
     }
 }

@@ -11,6 +11,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-reservation.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-re
     NavBarComponent,
     ConnexionComponent,
     InscriptionComponent,
-    NouvelleReservationComponent
+    NouvelleReservationComponent,
+    HomeComponent
     
   ],
   imports: [

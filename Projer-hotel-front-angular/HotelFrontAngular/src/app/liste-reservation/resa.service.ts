@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { Observable, of } from 'rxjs';
 import { AppConfigService } from '../app-config.service';
+import { ConnexionService } from '../connexion/connexion.service';
 import { ListeReservation, PageReservation } from '../models/reservation.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResaService {
+export class ResaService  {
   serviceUrl! : string;
   reservations! : Array<ListeReservation>;
   
   result! : Observable<ListeReservation>;
   
-  constructor(private http: HttpClient, private appConfig: AppConfigService) {
+  constructor(private http: HttpClient, private appConfig: AppConfigService, private connexionService :ConnexionService) {
     this.serviceUrl = appConfig.backEndUrl + "reservations/";
     this.load();
   // this.reservations = [{"id":1,"dateDebut_resa":"2022-01-13","dateFin_resa":"2022-11-12","nom":"lam","prenom":"omar","email":"client@ client","telephone":"1111111","naissance":"2023-01-12","nombrePassager":1}]
@@ -22,6 +23,7 @@ export class ResaService {
   //   this.reservations.push({"id":index,"dateDebut_resa":"2022-01-11","dateFin_resa":"2022-11-12","nom":"lam","prenom":"omar","email":"client@ client","telephone":"1111111","naissance":"2023-01-12","nombrePassager":1})
   //       }
    }
+
 //    public findAll() { return this.http
 //     .get('http://localhost:8080/api/client')
 //     .subscribe(resp => this.clients = resp.json());
@@ -36,6 +38,7 @@ export class ResaService {
 //       });
 //       return this.result;
 // }
+
 findById(id: number): Observable<ListeReservation> {
   return this.http.get<ListeReservation>(this.serviceUrl+"liste/" + id);
 }
@@ -69,7 +72,7 @@ remove(id: number): void {
 
 public getPageReservations(page :number,size : number) : Observable<PageReservation> {
   let index = page*size;
-  let totalPages = ~~(this.reservations.length/size);
+  let totalPages = ~~(this.reservations?.length/size);
   if (this.reservations.length%size != 0) {
     totalPages++;
   }
@@ -81,9 +84,33 @@ public getPageReservations(page :number,size : number) : Observable<PageReservat
 
 
 public load(): void {
-  this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
-    this.reservations = response;
-    console.log(response)
-  });
+if (this.connexionService.compteConnecte) {
+  if (this.connexionService.compteConnecte.className=="Client") {
+    this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/client/"+this.connexionService.compteConnecte.id).subscribe(response => {
+      this.reservations = response
+  });} 
+}else
+  {
+    this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
+      this.reservations = response;
+      console.log(response)
+    });}
+
 }
-}
+
+
+// if (this.connexionService.compteConnecte.className=="Client") {
+//   this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/client/"+this.connexionService.compteConnecte.id).subscribe(response => {
+//     this.reservations = response
+// } }
+
+
+
+
+
+// if (this.connexionService.compteConnecte.className!="Client"){
+//   this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
+//     this.reservations = response;
+//     console.log(response)
+//   });}
+ }

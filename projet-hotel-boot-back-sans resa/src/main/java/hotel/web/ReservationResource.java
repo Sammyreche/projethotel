@@ -24,6 +24,8 @@ import hotel.dao.IDAOPassager;
 import hotel.dao.IDAOPrestation;
 import hotel.dao.IDAOReservation;
 import hotel.model.Chambre;
+import hotel.model.Client;
+import hotel.model.Compte;
 import hotel.model.Passager;
 import hotel.model.Prestation;
 import hotel.model.Reservation;
@@ -327,6 +329,143 @@ public ReservationDto createbis( @RequestBody ReservationDto reservationDto) {
 
 	Reservation reservation = new Reservation();
 	reservation.setId(reservationDto.getId());
+	reservation = daoReservation.save(reservation);
+	System.out.println("ok pour resa");
+//	Passager passager = new Passager();
+//	ReservationActivite activite = new ReservationActivite();
+//	Prestation prestation = new SalleDeSport();
+	Chambre chambre = new Chambre();
+	chambre.setId(reservationDto.getId_chambre());
+	
+	chambre=daoChambre.save(chambre);	
+
+//	chambre=daoChambre.save(chambre);
+
+//	passager.setResa(reservation);
+//	activite.setPassager(passager);
+//	List<ReservationActivite> activites = new ArrayList<>();
+//	prestation.setResaActivite(activites);
+	List<Passager> passagers = new ArrayList<>();
+	
+	
+
+	//reservation.setId(reservationDto.getId());
+	reservation.setDateFin(reservationDto.getDateFin_resa());
+	reservation.setDateDebut(reservationDto.getDateDebut_resa());
+
+
+	if (!(reservationDto.getTypeLogement()==null)) {
+						chambre.setType((TypeLogement.valueOf(reservationDto.getTypeLogement())));
+					}
+	if (!(reservationDto.getPassagers().isEmpty())) {
+		int i = 0;
+			for (ReservationActivitePassagerDTO p : reservationDto.getPassagers()) {
+				
+				Passager passager = new Passager();
+				passager.setResa(reservation);
+				
+				//passager=daoPassager.save(passager);
+			//	ReservationActivite activite = new ReservationActivite();
+			//	activite = daoReservationActivite.save(activite);
+			
+				
+				passager.setChambre(chambre);
+				
+
+					passager.setId(p.getId_passager());
+					passager=daoPassager.save(passager);
+
+					passager.setNom(p.getNom_passager());
+					passager.setPrenom(p.getPrenom_passager());
+					passager.setNaissance(p.getNaissance_passager());
+					Prestation prestation = new Prestation();
+					
+			//			activite.setDate(p.getDate());
+
+					
+						if ((p.getTypeActivite()!=null)) {
+							if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.salledesport) {
+							//	Prestation prestation = new Prestation();
+								prestation.setId(p.getId_prestation());
+							//	prestation = daoPrestation.save(prestation);
+								prestation.setNombre(p.getNombre());
+								prestation.setTypeActivite(TypeActivite.salledesport);
+								prestation.setDate(p.getDate());
+								//prestation=daoPrestation.save(prestation);
+				//				activite.setPrestation(prestation);
+				//				activite.setPassager(passager);
+							} else if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.restaurant) {
+								System.out.println("ok pour resto");
+							//	Prestation prestation = new Prestation();
+								prestation.setId(p.getId_prestation());
+								//prestation = daoPrestation.save(prestation);
+								prestation.setNombre(p.getNombre());
+								prestation.setTypeActivite(TypeActivite.restaurant);
+								prestation.setDate(p.getDate());
+								//prestation=daoPrestation.save(prestation);
+				//				activite.setPrestation(prestation);
+				//				activite.setPassager(passager);
+							}	else if (TypeActivite.valueOf(p.getTypeActivite())==TypeActivite.spa) {
+								System.out.println("ok pour spa");
+								
+								prestation.setId(p.getId_prestation());
+								//prestation = daoPrestation.save(prestation);
+								prestation.setNombre(p.getNombre());
+								prestation.setTypeActivite(TypeActivite.spa);
+								prestation.setDate(p.getDate());
+								//prestation=daoPrestation.save(prestation);
+				//				activite.setPrestation(prestation);
+				//				activite.setPassager(passager);
+
+							}
+						}
+						passager=daoPassager.save(passager);
+						passager.setPrestation(prestation);
+						prestation=daoPrestation.save(prestation);
+						
+
+//					activite.setPassager(passager);
+		//			activite=daoReservationActivite.save(activite);
+		//			passager.setResactivite(activite);
+//					passager.setResa(reservation);
+//					reservation = daoReservation.save(reservation);
+//					reservation.getPassagers().forEach(t -> t.setResa(reservation) );
+//					passager.getResa().setId(reservation.getId());
+					passagers.add(passager);
+
+					passager=daoPassager.save(passager);
+		//			activite.setPassager(passager);
+					System.out.println("avant le save");
+					//reservation.setPassagers(passagers);
+					reservation.getPassagers().add(passager);
+					
+
+					System.out.println("après le save");
+			//System.out.println(passager);
+					i++;
+
+		}
+			
+					
+	}else {
+		reservation.setPassagers(null);
+		}
+	
+	reservation=daoReservation.save(reservation);
+	
+	ReservationDto resultat = findById(reservation.getId());
+	return resultat;
+}
+
+
+@PostMapping("/biss/{id}")
+public ReservationDto createbisAjoutPassager( @RequestBody ReservationDto reservationDto, @PathVariable Integer id) {
+
+	Reservation reservation = new Reservation();
+	reservation.setId(reservationDto.getId());
+	Client clientPrincipal = new Client();
+	reservation.setClientPrincipal(clientPrincipal);
+	reservation.getClientPrincipal().setId(id);
 	reservation = daoReservation.save(reservation);
 	System.out.println("ok pour resa");
 //	Passager passager = new Passager();
