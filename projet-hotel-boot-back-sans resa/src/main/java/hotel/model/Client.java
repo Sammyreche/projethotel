@@ -51,15 +51,6 @@ public class Client extends Compte{
 	
 	
 
-	public Client(String nom, String prenom, String telephone, LocalDate naissance) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.naissance = naissance;
-	}
-
-
 
 	public String getNom() {
 		return nom;

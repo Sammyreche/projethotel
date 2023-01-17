@@ -24,10 +24,10 @@ public class SubscribeResource {
 	private IDAOCompte daoCompte;
 	
 	@PutMapping("")
-	public Client create(@Valid @RequestBody Client client, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
-		}
+	public Client create(@Valid @RequestBody Client client/*, BindingResult result*/) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
+//		}
 		client= daoCompte.save(client);
 		
 		return client;

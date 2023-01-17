@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,10 +62,10 @@ public class AdminRessouce {
 	}
 	
 	@PostMapping("/client")
-	public Client create(@Valid @RequestBody Client client, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
-		}
+	public Client create(@Valid @RequestBody Client client/*, BindingResult result*/) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
+//		}
 		client= daoCompte.save(client);
 		
 		return client;
@@ -120,10 +119,10 @@ public class AdminRessouce {
 	}
 	
 	@PostMapping("/personnel")
-	public Personnel creatPersonnel(@Valid @RequestBody Personnel personnel, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le personnel n'a pu être créé");
-		}
+	public Personnel creatPersonnel(@Valid @RequestBody Personnel personnel/*, BindingResult result*/) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le personnel n'a pu être créé");
+//		}
 		personnel= daoCompte.save(personnel);
 		
 		return personnel;
