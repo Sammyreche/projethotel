@@ -75,25 +75,18 @@ public class PersonnelRessource {
 	}
 	
 	@PostMapping("/client")
-	public Client create(@Valid @RequestBody Client client, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
-		}
+	public Client create(@Valid @RequestBody Client client/*, BindingResult result*/) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
+//		}
 		client= daoCompte.save(client);
 		
 		return client;
 		
 	}
-	
-	@GetMapping("/personnel")
-	@JsonView(views.ViewConnexion.class)
-	public List<Personnel> findAllPersonnel(){
-		List<Personnel> personnels = daoPersonnel.findAll();
-		return personnels ;
-	}
-	
 	@DeleteMapping("/client/{id}")
-	public void delete(@PathVariable Integer id) {
+	@JsonView(views.ViewConnexion.class)
+	public void deleteClient(@PathVariable Integer id) {
 		if (!daoClient.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
@@ -106,6 +99,14 @@ public class PersonnelRessource {
 		}
 		daoClient.deleteById(id);
 	}
+	
+	@GetMapping("/personnel")
+	@JsonView(views.ViewConnexion.class)
+	public List<Personnel> findAllPersonnel(){
+		List<Personnel> personnels = daoPersonnel.findAll();
+		return personnels ;
+	}
+	
 	
 	@GetMapping("/personnel/{id}")
 	@JsonView(views.ViewConnexion.class)
