@@ -12,6 +12,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-reservation.component';
 import { HomeComponent } from './home/home.component';
+import { PersonnelComponent } from './personnel/personnel.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     ConnexionComponent,
     InscriptionComponent,
     NouvelleReservationComponent,
-    HomeComponent
+    HomeComponent,
+    PersonnelComponent
     
   ],
   imports: [

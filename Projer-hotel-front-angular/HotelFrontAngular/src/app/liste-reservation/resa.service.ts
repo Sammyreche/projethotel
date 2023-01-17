@@ -89,13 +89,16 @@ if (this.connexionService.compteConnecte) {
     this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/client/"+this.connexionService.compteConnecte.id).subscribe(response => {
       this.reservations = response
   });} 
+  else if(this.connexionService.compteConnecte.className=="Personnel" || this.connexionService.compteConnecte.className=="Admin"){
+    {
+      this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
+        this.reservations = response;
+        console.log(response)
+      });}
+  }
 }else
-  {
-    this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
-      this.reservations = response;
-      console.log(response)
-    });}
 
+this.reservations=[]
 }
 
 

@@ -23,9 +23,6 @@ public class Personnel extends Compte {
 	private String prenom;
 	
 	public Personnel() {
-		
-		
-		
 	}
 
 	public String getNom() {
@@ -43,8 +40,8 @@ public class Personnel extends Compte {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
-	
+
+
 	
 	
 

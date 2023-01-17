@@ -119,5 +119,34 @@ public class PersonnelRessource {
 
 		return personnel.get();
 	}
+	
+	@DeleteMapping("/personnel/{id}")
+    public void deletePersonnel(@PathVariable Integer id) {
+        if (!daoPersonnel.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        Personnel personnel = daoPersonnel.findById(id).get();
+
+        daoPersonnel.deleteById(id);
+    }
+	
+	@PostMapping("/personnel")
+    @JsonView(views.ViewConnexion.class)
+    public Personnel create(@RequestBody Personnel personnel) {
+        personnel = daoPersonnel.save(personnel);
+
+        return personnel;
+    }
+
+    @PutMapping("/personnel/{id}")
+    @JsonView(views.ViewConnexion.class)
+    public Personnel update(@PathVariable Integer id, @RequestBody Personnel personnel) {
+    if (id != personnel.getId() || !daoPersonnel.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        personnel = daoPersonnel.save(personnel);
+
+        return personnel;
+    }
 
 }
