@@ -1,39 +1,127 @@
-<ul class="nav nav-pills m-5">
+<ul class="nav nav-pills text-color-dark mb-5 pt-5">
   <li class="nav-item">
     <a
       class="nav-link"
-      [routerLink]="['']"
+      [routerLink]="['/home']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       ><i class="bi bi-house"></i
     ></a>
   </li>
+  <!-- <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active"
+      >Home</a
+    >
+  </li> -->
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/listeResa']" routerLinkActive="active"
       >listeResa</a
     >
   </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['/editResa']" routerLinkActive="active"
-      >Edit resa</a
-    >
-  </li>
+
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active"
       >Connexion</a
     >
   </li>
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link" [routerLink]="['/detailResa']" routerLinkActive="active"
       >Detail resa</a
     >
-  </li>
+  </li> -->
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/nouvelResa']" routerLinkActive="active"
-      >Nouvelle Reservation</a
+      >Reservation</a
     >
   </li>
+  <li *ngIf="connectedCompte?.className == 'Admin'" class="nav-item">
+    <a class="nav-link" [routerLink]="['/personnel']" routerLinkActive="active"
+      >Personnel</a
+    >
+  </li>
+  <!-- <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      id="navbarDropdownMenuLink"
+      role="button"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <img
+        src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+        width="40"
+        height="40"
+        class="rounded-circle"
+      />
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="#">Dashboard</a>
+      <a class="dropdown-item" href="#">Edit Profile</a>
+      <a class="dropdown-item" href="#">Log Out</a>
+    </div>
+  </li> -->
+
+  <li
+    *ngIf="connectedCompte"
+    class="nav-item dropdown"
+    style="position: absolute; right: 10px"
+  >
+    <a
+      class="nav-link dropdown-toggle"
+      href="#"
+      id="navbarDropdown"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+        width="40"
+        height="40"
+        class="rounded-circle"
+      /><span> {{ connectedCompte?.login }} </span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li>
+        <a class="dropdown-item">{{ connectedCompte?.className }}</a>
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          (click)="logout()"
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          routerLinkActive="router-link-active"
+          >Log Out</a
+        >
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<!-- <ul class="nav nav-pills pt-5">
+  <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      href="#"
+      id="navbarDropdown"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+        width="40"
+        height="40"
+        class="rounded-circle"
+      />
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li><a class="dropdown-item" href="#">Log Out</a></li>
+    </ul>
+  </li>
+</ul> -->

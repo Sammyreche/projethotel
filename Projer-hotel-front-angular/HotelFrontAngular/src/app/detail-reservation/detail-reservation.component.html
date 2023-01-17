@@ -1,77 +1,80 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-  </head>
-
-  <body>
-    <h1>Detail de la reservation</h1>
-    <!-- {{ reservations | json }} -->
-    <div class="col col-md-6 offset-md-3 form-floating">
-      <div class="input-group">
-        <label class="input-group-text"> Numero de la reservation : </label>
-        <div class="form-control text-center">{{ reservations.id }}</div>
+<app-nav-bar></app-nav-bar>
+<div class="container">
+  <h1>Detail de la reservation</h1>
+  {{ reservations | json }}
+  <div class="col col-md-6 offset-md-3 form-floating">
+    <div class="input-group">
+      <label class="input-group-text col-5"> Numero de la reservation : </label>
+      <div class="form-control text-center">{{ reservations.id }}</div>
+    </div>
+    <div class="input-group">
+      <label class="input-group-text col-5"> Date debut : </label>
+      <div class="form-control text-center">
+        {{ reservations.dateDebut_resa }}
       </div>
-      <div class="input-group">
-        <label class="input-group-text"> Date debut : </label>
-        <div class="form-control text-center">
-          {{ reservations.dateDebut_resa }}
-        </div>
-      </div>
-      <div class="input-group">
-        <label class="input-group-text"> Date fin : </label>
-        <div class="form-control text-center">
-          {{ reservations.dateFin_resa }}
-        </div>
-      </div>
-
-      <div class="input-group">
-        <label class="input-group-text"> Type logement </label>
-        <div class="form-control text-center">
-          {{ reservations.typeLogement }}
-        </div>
+    </div>
+    <div class="input-group">
+      <label class="input-group-text col-5"> Date fin : </label>
+      <div class="form-control text-center">
+        {{ reservations.dateFin_resa }}
       </div>
     </div>
 
-    <br />
-    <br />
-    <div class="container">
-      <div class="card mt-3">
-        <div class="card-header bg-info text-white">
-          <span class="h2">Liste des passagers</span>
-        </div>
-        <div class="card-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Age</th>
-                <th>Activite</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let p of reservations?.passagers">
-                <td>{{ p.nom_passager }}</td>
-                <td>{{ p.prenom_passager }}</td>
-                <td>{{ p.naissance_passager }}</td>
-                <td>{{ p.typeActivite }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="input-group">
+      <label class="input-group-text col-5"> Type logement </label>
+      <div class="form-control text-center">
+        {{ reservations.typeLogement }}
       </div>
     </div>
+  </div>
 
-    <br />
-    <br />
+  <br />
+  <br />
+  <div class="container col-6 offset-3">
+    <div class="card mt-3">
+      <div class="card-header bg-info text-white">
+        <span class="h2">Liste des passagers</span>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Date de naissance</th>
+              <th>Activite</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of reservations?.passagers">
+              <td>{{ p.nom_passager }}</td>
+              <td>{{ p.prenom_passager }}</td>
+              <td>{{ p.naissance_passager }}</td>
+              <td>{{ p.typeActivite }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-    <h2>Liste des activités</h2>
-    <div class="container" *ngFor="let p of reservations?.passagers">
+  <br />
+  <br />
+
+  <!-- <h2>Liste des activités</h2> -->
+  <!-- <div class="card mt-3"></div> -->
+  <div
+    class="container col-6 offset-3"
+    *ngFor="let p of reservations?.passagers"
+  >
+    <div *ngIf="p.typeActivite != undefined">
       <div class="card mt-3">
         <div class="card-header bg-info text-white">
-          <span class="h2">Activité du passager {{ p.id_passager }} </span>
+          <span class="h2">Liste des activités</span>
+        </div>
+        <div class="card-header">
+          Activité du passager {{ p.id_passager }} :
         </div>
         <div class="card-body">
           <table class="table table-striped">
@@ -95,9 +98,19 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="btn">
-      <button class="btn btn-primary text-center"><a> Modifier </a></button>
-    </div>
-  </body>
-</html>
+  <div class="btn">
+    <!-- <button (click)="navigator()" class="btn btn-primary text-center">
+        Modifier
+      </button> -->
+    <button
+      [routerLink]="['/nouvelResa']"
+      [queryParams]="{ id: reservations.id }"
+      routerLinkActive="active"
+      class="btn btn-primary text-center"
+    >
+      Modifier
+    </button>
+  </div>
+</div>

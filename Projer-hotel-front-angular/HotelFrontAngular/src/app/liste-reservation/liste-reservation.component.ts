@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListeReservation, PageReservation } from '../models/reservation.model';
 import { ResaService } from './resa.service';
 
@@ -7,7 +7,7 @@ import { ResaService } from './resa.service';
   templateUrl: './liste-reservation.component.html',
   styleUrls: ['./liste-reservation.component.css']
 })
-export class ListeReservationComponent {
+export class ListeReservationComponent  implements OnInit{
   keyword! :string;
   reservations: Array<ListeReservation> = [];
   pageReservation : PageReservation;
@@ -19,6 +19,9 @@ export class ListeReservationComponent {
   constructor(public resaService : ResaService){
     this.reservations = this.resaService.reservations
   }
+
+    ngOnInit(): void {
+      this.resaService.load();  }  
   // list(): Array<ListeReservation> {
   //   this.reservations = this.resaService.findAll()
   //   return this.reservations;

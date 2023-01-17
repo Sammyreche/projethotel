@@ -1,4 +1,5 @@
-<div class="container">
+<app-nav-bar></app-nav-bar>
+<div class="container" style="padding-bottom: 180px">
   <div class="card">
     <div class="card-header">Liste des reservation :</div>
     <div class="card-body">
@@ -31,7 +32,6 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr *ngFor="let p of list()">
             <td>{{ p.id }}</td>
             <td>{{ p.nom }}</td>
@@ -40,7 +40,12 @@
             <td>{{ p.dateFin_resa }}</td>
             <td class="text-center">{{ p.nombrePassager }}</td>
             <td>
-              <button class="btn btn-primary">
+              <button
+                [routerLink]="['/detailResa']"
+                [queryParams]="{ id: p.id }"
+                routerLinkActive="active"
+                class="btn btn-primary"
+              >
                 <i class="bi bi-plus-circle-fill bi-lg"></i>
               </button>
             </td>
@@ -91,6 +96,14 @@
           >
         </li>
       </ul>
+      <button
+        class="btn btn-outline-success mt-5"
+        [routerLink]="['/nouvelResa']"
+        routerLinkActive="active"
+      >
+        Voulez Vous Rajouter une Nouvelle Reservation
+        <i class="bi bi-calendar2-day"></i>
+      </button>
     </div>
   </div>
 </div>

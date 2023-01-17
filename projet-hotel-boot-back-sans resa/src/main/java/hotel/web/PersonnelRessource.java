@@ -75,25 +75,18 @@ public class PersonnelRessource {
 	}
 	
 	@PostMapping("/client")
-	public Client create(@Valid @RequestBody Client client, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
-		}
+	public Client create(@Valid @RequestBody Client client/*, BindingResult result*/) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client n'a pu être créé");
+//		}
 		client= daoCompte.save(client);
 		
 		return client;
 		
 	}
-	
-	@GetMapping("/personnel")
-	@JsonView(views.ViewConnexion.class)
-	public List<Personnel> findAllPersonnel(){
-		List<Personnel> personnels = daoPersonnel.findAll();
-		return personnels ;
-	}
-	
 	@DeleteMapping("/client/{id}")
-	public void delete(@PathVariable Integer id) {
+	@JsonView(views.ViewConnexion.class)
+	public void deleteClient(@PathVariable Integer id) {
 		if (!daoClient.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
@@ -107,6 +100,14 @@ public class PersonnelRessource {
 		daoClient.deleteById(id);
 	}
 	
+	@GetMapping("/personnel")
+	@JsonView(views.ViewConnexion.class)
+	public List<Personnel> findAllPersonnel(){
+		List<Personnel> personnels = daoPersonnel.findAll();
+		return personnels ;
+	}
+	
+	
 	@GetMapping("/personnel/{id}")
 	@JsonView(views.ViewConnexion.class)
 	public Personnel findByIdPersonnel(@PathVariable Integer id) {
@@ -118,5 +119,34 @@ public class PersonnelRessource {
 
 		return personnel.get();
 	}
+	
+	@DeleteMapping("/personnel/{id}")
+    public void deletePersonnel(@PathVariable Integer id) {
+        if (!daoPersonnel.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        Personnel personnel = daoPersonnel.findById(id).get();
+
+        daoPersonnel.deleteById(id);
+    }
+	
+	@PostMapping("/personnel")
+    @JsonView(views.ViewConnexion.class)
+    public Personnel create(@RequestBody Personnel personnel) {
+        personnel = daoPersonnel.save(personnel);
+
+        return personnel;
+    }
+
+    @PutMapping("/personnel/{id}")
+    @JsonView(views.ViewConnexion.class)
+    public Personnel update(@PathVariable Integer id, @RequestBody Personnel personnel) {
+    if (id != personnel.getId() || !daoPersonnel.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        personnel = daoPersonnel.save(personnel);
+
+        return personnel;
+    }
 
 }
