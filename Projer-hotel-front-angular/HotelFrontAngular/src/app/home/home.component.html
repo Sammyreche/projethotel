@@ -235,7 +235,7 @@
       style="padding-top: 30px; padding-bottom: 30px"
       class="container"
     >
-      <h2 id="jeReserve">Je reserve</h2>
+      <!-- <h2 id="jeReserve">Je reserve</h2>
       <div id="formulair">
         <form action="#">
           <ul
@@ -313,26 +313,31 @@
                 <option value="3">6.pers</option>
               </select>
             </li>
-          </ul>
-          <div style="display: flex; justify-content: center; width: 100%">
-            <button
-              id="submit"
-              style="
-                border-radius: 20px;
-                border-color: #f1d7c3;
-                background-color: #c6f1c3;
-                display: flex;
-                justify-content: center;
-                width: 30%;
-              "
-              type="submit"
-              class="btn"
-            >
-              Rcherche
-            </button>
-          </div>
-        </form>
+          </ul> -->
+      <div style="display: flex; justify-content: center; width: 100%">
+        <button
+          [routerLink]="['/nouvelResa']"
+          routerLinkActive="active"
+          id="submit"
+          style="
+            border-radius: 50px;
+            border-color: #f1d7c3;
+            background-color: #c6f1c3;
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            font-family: Times New Roman, Times, serif;
+            font-size: 50px;
+            font-style: italic;
+          "
+          type="submit"
+          class="btn"
+        >
+          Je reserve
+        </button>
       </div>
+      <!-- </form> -->
+      <!-- </div> -->
     </div>
 
     <div>

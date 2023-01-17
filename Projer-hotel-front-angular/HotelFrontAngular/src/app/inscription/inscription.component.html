@@ -1,6 +1,10 @@
 <app-nav-bar></app-nav-bar>
 {{ formInscription | json }}
-<div class="container pb-10" class="" style="background-color: #f1d7c3">
+<div
+  class="container h-500"
+  class="vh-500"
+  style="background-color: #f1d7c3; padding-bottom: 100px"
+>
   <div class="row d-flex justify-content-center align-items-center h-100">
     <div class="col-lg-12 col-xl-11">
       <div class="card text-black" style="border-radius: 25px">
@@ -62,12 +66,18 @@
                   </div>
                 </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example1c" class="form-control" placeholder="hotel@jordaninou.com" required [(ngModel)] = "formInscription.mail" />
-                      <label class="form-label" for="form3Example1c">Email</label>
-                    </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <input
+                      type="email"
+                      id="form3Example1c"
+                      class="form-control"
+                      placeholder="hotel@jordaninou.com"
+                      required
+                      [(ngModel)]="formInscription.mail"
+                    />
+                    <label class="form-label" for="form3Example1c">Email</label>
                   </div>
                 </div>
 
@@ -129,15 +139,15 @@
                   >
                     S'inscrire
                   </button>
-                  <a href="index.html"
-                    ><button
-                      type="button"
-                      class="btn btn-primary btn-lg"
-                      style="background-color: #fdcdba"
-                    >
-                      Retour
-                    </button></a
+
+                  <button
+                    [routerLink]="['/home']"
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                    style="background-color: #fdcdba"
                   >
+                    Retour
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-<ul class="nav nav-pills mb-5 pt-5">
+<ul class="nav nav-pills text-color-dark mb-5 pt-5">
   <li class="nav-item">
     <a
       class="nav-link"
@@ -65,7 +65,7 @@
     </div>
   </li> -->
 
-  <li class="nav-item dropdown" style="position: absolute; right: 0px">
+  <li class="nav-item dropdown" style="position: absolute; right: 10px">
     <a
       class="nav-link dropdown-toggle"
       href="#"
@@ -79,10 +79,26 @@
         width="40"
         height="40"
         class="rounded-circle"
-      />
+      /><span> {{ connectedCompte.login }} </span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li><a class="dropdown-item" href="#">Log Out</a></li>
+    <ul
+      *ngIf="connectedCompte"
+      class="dropdown-menu"
+      aria-labelledby="navbarDropdown"
+    >
+      <li>
+        <a class="dropdown-item">{{ connectedCompte.className }}</a>
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          (click)="logout()"
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          routerLinkActive="router-link-active"
+          >Log Out</a
+        >
+      </li>
     </ul>
   </li>
 </ul>

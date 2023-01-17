@@ -1,8 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-  {{ formReservation | json }}
-  {{ compte | json }}
-  <div class="col-md-6 offset-md-3">
+  <!-- {{ formReservation | json }} -->
+  <!-- {{ compte | json }} -->
+  <div class="col-md-6 offset-md-3 pt-5">
     <div class="card">
       <div *ngIf="currentAction == 'inscription'" class="card-header">
         Nouvelle reservation :
@@ -254,7 +254,7 @@
       RESERVER
     </button>
   </div>
-  <div class="">
+  <!-- <div class="">
     <button
       (click)="logout()"
       type="button"
@@ -262,5 +262,5 @@
     >
       logout
     </button>
-  </div>
+  </div> -->
 </div>
