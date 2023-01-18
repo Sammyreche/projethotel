@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnexionService } from '../connexion/connexion.service';
 // import { convertJsToTs, convertJsToTsSync } from 'js-to-ts-converter';
 
 @Component({
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   etat = "off";
+connectedCompte = this.connexionService.compteConnecte;
 
-constructor(){
+constructor(public connexionService: ConnexionService){
 //   convertJsToTs( './script_test.js' ).then(
 //     () => console.log( 'Done!' ),
 //     ( err ) => console.log( 'Error: ', err )
