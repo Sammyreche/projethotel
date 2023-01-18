@@ -152,26 +152,16 @@ export class NouvelleReservationComponent {
       }
     }
 
-    saveReservation() : any{
-      if (this.compte==undefined) {
-        alert("Merci de vous connecter avant la reservation")
-        this.router.navigate(['/login'])
-       return null
+    saveReservation(){
+
+      if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
+        alert("Date début doit etre inferieur à la date fin ");
       }
-      if (this.formReservation.passagers.length==0) {
-        alert("impossible de sauvgarder une reservation sans passager")
-        alert("merci de remplir au moins les information d'un seul passager")
-        return null
-      }else
-      if (this.compte.className=='Admin'||this.compte.className=='Personnel') {
-        this.nouvellResaService.create(this.formReservation,this.clientId)
-        alert("Reservation bien effectuée")
-      this.router.navigate(['/listeResa'])
-      return null
-      }
+      else{
       this.nouvellResaService.create(this.formReservation,this.compte.id)
       alert("Reservation bien effectuée")
       this.router.navigate(['/listeResa'])
+    }
     }
     logout(){
       console.log("ok")
