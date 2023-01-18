@@ -14,10 +14,12 @@ import { Client } from '../models/compte.model';
 export class InscriptionComponent {
 
   formInscription: Client= new Client ;
+  
   verifPass : string;
 
 constructor(public InscriptionService : InscriptionService,
   public connexionService : ConnexionService){
+    this.formInscription.className="Client"
 
 }
 
