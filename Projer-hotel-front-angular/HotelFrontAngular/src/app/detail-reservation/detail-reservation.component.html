@@ -33,7 +33,7 @@
   <div class="container col-6 offset-3">
     <div class="card mt-3">
       <div class="card-header bg-info text-white">
-        <span class="h2">Liste des passagers</span>
+        <span class="h2">Liste des invités</span>
       </div>
       <div class="card-body">
         <table class="table table-striped">
@@ -42,7 +42,7 @@
               <th>Nom</th>
               <th>Prenom</th>
               <th>Date de naissance</th>
-              <th>Activite</th>
+              <th>Activité</th>
               <th></th>
             </tr>
           </thead>
@@ -74,12 +74,12 @@
           <span class="h2">Liste des activités</span>
         </div>
         <div class="card-header">
-          Activité du passager {{ p.id_passager }} :
+          Activité de l'invité N° {{ p.id_passager }} :
         </div>
         <div class="card-body">
           <table class="table table-striped">
             <tr>
-              <td>Nom du passager</td>
+              <td>Nom de l'invité</td>
               <td class="form-control">{{ p.nom_passager }}</td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@
               <td class="form-control">{{ p.nombre }}</td>
             </tr>
             <tr>
-              <td>Type d'activite</td>
+              <td>Type d'activité</td>
               <td class="form-control">{{ p.typeActivite }}</td>
             </tr>
           </table>
@@ -110,6 +110,7 @@
       [queryParams]="{ id: reservations.id }"
       routerLinkActive="active"
       class="btn btn-primary text-center"
+      style = "background-color: #447ebb !important"
     >
       Modifier
     </button>
@@ -118,6 +119,7 @@
       [queryParams]="{ id: reservations.id }"
       routerLinkActive="active"
       class="btn btn-primary text-center ms-3"
+      style = "background-color: #447ebb !important"
     >
       Retour
     </button>

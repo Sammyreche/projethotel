@@ -10,6 +10,7 @@ import { ConnexionService } from './connexion.service';
 export class ConnexionComponent {
   login: string;
   password: string;
+  compteinexistant : boolean =false;
 
   constructor(private connexionService: ConnexionService,  private router: Router, private route: ActivatedRoute){
     this.route.queryParams.subscribe(params => {
@@ -23,8 +24,13 @@ export class ConnexionComponent {
       this.connexionService.compteConnecte = resp;
       sessionStorage.setItem('connected',JSON.stringify(structuredClone(resp)))
       console.log(this.connexionService.compteConnecte)
+      if(this.connexionService.compteConnecte==null){
+        this.compteinexistant=true
+        return
+      }
+      this.compteinexistant=false;
       switch (resp.className) {
-        case 'Admin': alert("connection admin ok ; mais pas encore page admin"); this.router.navigate(['listeResa']) ; break;
+        case 'Admin': ; this.router.navigate(['listeResa']) ; break;
         case 'Client':  this.router.navigate(['listeResa']) ; break;
         case 'personel': this.router.navigate(['listeResa']) ; break;
       }
