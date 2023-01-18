@@ -14,9 +14,12 @@ import { Client } from '../models/compte.model';
 export class InscriptionComponent {
 
   formInscription: Client= new Client ;
+  
+  verifPass : string;
 
 constructor(public InscriptionService : InscriptionService,
   public connexionService : ConnexionService){
+    this.formInscription.className="Client"
 
 }
 
@@ -26,6 +29,14 @@ constructor(public InscriptionService : InscriptionService,
 
   }
 
-}
+  verifpass(): void{
+    if (this.verifPass === this.formInscription.password)
+    this.save()
+  
+  else{
+    alert("votre mot de passe ne corespond pas")
+  }
 
+}
+}
 

@@ -29,18 +29,11 @@ public class LoginResource {
 	@JsonView(views.ViewConnexion.class)
 	public Compte login(@RequestBody AuthDTO auth) {
 		Compte conect = daoCompte.findByLoginAndPassword(auth.getLogin(), auth.getPassword());
-		if (conect==null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou password incorect");
-		}
+//		if (conect==null) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou password incorect");
+//		}
 		
 			return conect;
-
-			//		}else if(auth.getChoix()==2) {
-			//			return (Personnel)conect;
-			//		}else {
-			//			return(Admin)conect ;
-			//		}
-			//	}
 
 		}
 	}
