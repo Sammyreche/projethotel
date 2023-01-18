@@ -15,7 +15,6 @@ export class InscriptionComponent {
 
   formInscription: Client= new Client ;
 
-
 constructor(public InscriptionService : InscriptionService,
   public connexionService : ConnexionService){
 
@@ -24,6 +23,7 @@ constructor(public InscriptionService : InscriptionService,
   save(): void {
     console.log(this.formInscription)
      this.InscriptionService.create(this.formInscription);
+
   }
 
 }

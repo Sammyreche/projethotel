@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConnexionService } from './connexion.service';
 
 @Component({
@@ -11,7 +11,12 @@ export class ConnexionComponent {
   login: string;
   password: string;
 
-  constructor(private connexionService: ConnexionService,  private router: Router){}
+  constructor(private connexionService: ConnexionService,  private router: Router, private route: ActivatedRoute){
+    this.route.queryParams.subscribe(params => {
+      this.login = params['username'];
+      });
+      
+  }
 
   auth(): void {
     this.connexionService.findByLoginAndPassword(this.login, this.password).subscribe(resp => {
