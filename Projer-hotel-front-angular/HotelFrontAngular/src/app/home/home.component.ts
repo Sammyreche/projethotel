@@ -141,5 +141,8 @@ toNavig(){
 }
 // *ngIf="connectedCompte : [routerLink]="['/nouvelResa']" "
 
+alertNews() {
+  alert("Vous êtes maintenant inscrit à notre newsletter.")
+}
 
 }

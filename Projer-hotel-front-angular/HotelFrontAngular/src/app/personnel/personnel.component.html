@@ -11,14 +11,14 @@
             <th>Prenom</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> 
           <tr *ngFor="let p of list()">
             <td>{{ p.id }}</td>
             <td>{{ p.nom }}</td>
             <td>{{ p.prenom }}</td>
             <td>
               <div class="btn-group btn-group-sm">
-                <a class="btn btn-primary" (click)="edit(p.id)"
+                <a class="btn btn-info" (click)="edit(p.id)"
                   ><i class="bi bi-pencil-square"></i
                 ></a>
                 <a class="btn btn-danger" (click)="remove(p.id)"
@@ -31,11 +31,11 @@
       </table>
       <div class="card-footer">
         <a class="btn btn-success btn-lg" (click)="add()"
-          ><i class="bi bi-plus-square"></i
-        ></a>
+          ><i class="bi bi-plus-square-fill" ></i>
+        </a>
       </div>
       <div class="card mt-3" *ngIf="personnel">
-        <div class="card-header bg-primary text-white display-6">
+        <div class="card-header bg-primary text-white display-6" style = "background-color: #447ebb !important">
           Edition d'un personnel
         </div>
         <div class="card-body">

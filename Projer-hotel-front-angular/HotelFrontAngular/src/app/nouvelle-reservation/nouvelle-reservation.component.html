@@ -8,7 +8,7 @@
         Nouvelle reservation :
       </div>
       <div *ngIf="currentAction == 'edit'" class="card-header">
-        Edite de la reservation N° : {{ formReservation.id }}
+        Modification de la reservation N° : {{ formReservation.id }}
       </div>
       <div class="card-body">
         <div *ngIf="currentAction == 'edit'" class="input-group">
@@ -85,7 +85,7 @@
         </div>
         <div class="form-check form-switch offset-4 mt-4">
           <label class="form-check-label" for="editPassager">
-            Ajouter des passagers
+            Ajouter des invités
           </label>
           <input
             (click)="handleSetAffichagePassager()"
@@ -95,7 +95,7 @@
           />
         </div>
         <div *ngIf="editPassager" class="offset-3 mt-2">
-          <span>Nombre des passagers :</span>
+          <span>Nombre d'invités :</span>
           <button class="btn btn-lg" (click)="ajouterPassager()">
             <i class="bi bi-plus-circle-fill"></i>
           </button>
@@ -119,7 +119,7 @@
   <div *ngIf="editPassager" class="mt-3 mb-5">
     <div class="card mt-3" *ngFor="let p of formReservation.passagers">
       <div class="card-header">
-        Passager {{ formReservation.passagers.indexOf(p) + 1 }}:
+        Invité {{ formReservation.passagers.indexOf(p) + 1 }}:
       </div>
       <div class="card-body">
         <div class="row">
@@ -165,14 +165,14 @@
                 class="form-check-label"
                 for="'EditActi'+{{ formReservation.passagers.indexOf(p) + 1 }}"
               >
-                Ajouter une activitée
+                Ajouter une activité
               </label>
               <label
                 *ngIf="currentAction == 'edit'"
                 class="form-check-label"
                 for="'EditActi'+{{ formReservation.passagers.indexOf(p) + 1 }}"
               >
-                Editer l'activitée
+                Modifier l'activité
               </label>
               <input
                 (click)="handleSetAffichageActiviter(p)"
@@ -183,12 +183,9 @@
             </div>
             <div class="row mt-4 ms-5">
               <div class="col">
-                <button type="button" class="btn btn-success">
-                  Enregistrer
+                <button type="button" class="btn btn-danger">
+                  Supprimer
                 </button>
-              </div>
-              <div class="col">
-                <button type="button" class="btn btn-danger">Supprimer</button>
               </div>
             </div>
           </div>
@@ -199,7 +196,7 @@
       <div *ngIf="p.affichageActiviter" class="col-8 offset-2 mb-3">
         <i class="bi bi-caret-down-fill offset-6"></i>
         <div class="card">
-          <div class="card-header">Activité du passager 1 :</div>
+          <div class="card-header">Activité de l'invité 1 :</div>
           <div class="card-body">
             <div class="row">
               <div class="col-7">
@@ -231,7 +228,7 @@
               <div class="col-5">
                 <div>
                   <label class="input-group-text"
-                    >Je vais etre accompagner de :</label
+                    >Je vais être accompagné de :</label
                   >
                 </div>
 
@@ -275,7 +272,7 @@
       (click)="saveReservation()"
       routerLinkActive="active"
       type="button"
-      class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3"
+      class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3" style = "background-color: #447ebb !important"
     >
       RESERVER
     </button>
