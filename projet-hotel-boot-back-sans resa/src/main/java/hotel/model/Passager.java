@@ -37,7 +37,7 @@ public class Passager {
 	private String prenom;
 	
 	@JoinColumn(name = "room_id")
-	@OneToOne 
+	@ManyToOne 
 	private Chambre chambre;
 	
 	@Column(name = "birthdate")
