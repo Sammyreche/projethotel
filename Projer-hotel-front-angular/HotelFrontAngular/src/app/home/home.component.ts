@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConnexionService } from '../connexion/connexion.service';
 // import { convertJsToTs, convertJsToTsSync } from 'js-to-ts-converter';
 
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
   etat = "off";
 connectedCompte = this.connexionService.compteConnecte;
 
-constructor(public connexionService: ConnexionService){
+constructor(public connexionService: ConnexionService,private route: ActivatedRoute,
+  private router: Router){
 //   convertJsToTs( './script_test.js' ).then(
 //     () => console.log( 'Done!' ),
 //     ( err ) => console.log( 'Error: ', err )
@@ -130,6 +132,14 @@ affichageMoins() {
   document.getElementById("plus").style.display = "flex";
   document.getElementById("moins").style.display = "none";
 }
+
+toNavig(){
+  if (this.connectedCompte) {
+    this.router.navigate(['/listeResa'])
+  }else
+  this.router.navigate(['/login'])
+}
+// *ngIf="connectedCompte : [routerLink]="['/nouvelResa']" "
 
 
 }

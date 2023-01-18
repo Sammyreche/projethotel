@@ -49,7 +49,7 @@
 <body style="background-color: #f3e6dd">
   <div class="headre">
     <!-- fixed-top -->
-    <nav 
+    <nav
       id="navbar"
       class="navbar fixed-top"
       [ngClass]="{ transparent: offset }"
@@ -100,7 +100,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
-            <li *ngIf="connectedCompte"  class="nav-item">
+            <li *ngIf="connectedCompte" class="nav-item">
               <a
                 class="nav-link"
                 [routerLink]="['/listeResa']"
@@ -116,7 +116,7 @@
                 >Connexion</a
               >
             </li>
-            <li  *ngIf="connectedCompte"  class="nav-item">
+            <li *ngIf="connectedCompte" class="nav-item">
               <a
                 class="nav-link"
                 [routerLink]="['/detailResa']"
@@ -132,7 +132,7 @@
                 >Inscription</a
               >
             </li>
-            <li *ngIf="connectedCompte"  class="nav-item">
+            <li *ngIf="connectedCompte" class="nav-item">
               <a
                 class="nav-link"
                 [routerLink]="['/nouvelResa']"
@@ -316,7 +316,7 @@
           </ul> -->
       <div style="display: flex; justify-content: center; width: 100%">
         <button
-          [routerLink]="['/nouvelResa']"
+          (click)="toNavig()"
           routerLinkActive="active"
           id="submit"
           style="
