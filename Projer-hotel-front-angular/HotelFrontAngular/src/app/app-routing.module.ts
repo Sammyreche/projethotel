@@ -10,6 +10,7 @@ import { NouvelleReservationComponent } from './nouvelle-reservation/nouvelle-re
 import { PersonnelComponent } from './personnel/personnel.component';
 
 const routes: Routes = [
+{path: "", component: HomeComponent, pathMatch: 'full'},
 {path: "listeResa", component: ListeReservationComponent},
 {path: "home", component: HomeComponent},
 {path: "editResa", component: EditResaComponent},

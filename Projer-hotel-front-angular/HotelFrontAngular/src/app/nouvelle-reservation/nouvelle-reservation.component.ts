@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ConnexionService } from '../connexion/connexion.service';
 import { resaDetailHttpService } from '../detail-reservation/resaDetailHttp.service';
 import { Compte } from '../models/compte.model';
@@ -17,7 +18,8 @@ export class NouvelleReservationComponent {
   reservation : Detailresa = new Detailresa();
   passager = new Passager();
   formReservation : Detailresa = new Detailresa();
-  
+  clientId : number;
+ 
   editPassager : boolean = false
   editActiviter : boolean = false
   compte : Compte = this.compteService.compteConnecte;
@@ -29,6 +31,7 @@ export class NouvelleReservationComponent {
   constructor(private compteService : ConnexionService,
     private nouvellResaService : NouvellReservationService,
     private route: ActivatedRoute,
+    private router: Router,
     public resaService : resaDetailHttpService){
    this.formReservation.passagers = new Array<Passager>() 
 
@@ -52,7 +55,8 @@ export class NouvelleReservationComponent {
          
           if (this.currentAction = "inscription") {
             this.currentAction = "edit"
-
+            this.searchIdClient()
+            
           }
         }
       
@@ -69,8 +73,21 @@ export class NouvelleReservationComponent {
 
   onInit(){
     this.NbrPasssager = this.formReservation.passagers.length;
+    // this.nouvellResaService.listeClient().subscribe(rep=>{
+    //   this.comptesClient=rep;
+    //   console.log(rep)
+    // })
+    // this.compteClient
+    this.nouvellResaService.listeClient()
 
   }
+
+    listClient(){
+     return this.nouvellResaService.comptesClient
+    }
+
+
+
     handleSetAffichagePassager(){
       if (this.editPassager==false) {
         this.editPassager=true;
@@ -121,9 +138,40 @@ export class NouvelleReservationComponent {
       
     }
 
+    searchIdClient() : void {
+      
+      if (this.currentAction=="edit") {
+        console.log(this.nouvellResaService.comptesClient)
+        this.nouvellResaService.comptesClient.forEach(compte => {
+          compte.resa.forEach(ele => {
+            if (ele.id==this.formReservation.id) {
+              this.clientId = compte.id
+            }
+          });
+        });
+      }
+    }
 
-    saveReservation(){
+    saveReservation() : any{
+      if (this.compte==undefined) {
+        alert("Merci de vous connecter avant la reservation")
+        this.router.navigate(['/login'])
+       return null
+      }
+      if (this.formReservation.passagers.length==0) {
+        alert("impossible de sauvgarder une reservation sans passager")
+        alert("merci de remplir au moins les information d'un seul passager")
+        return null
+      }else
+      if (this.compte.className=='Admin'||this.compte.className=='Personnel') {
+        this.nouvellResaService.create(this.formReservation,this.clientId)
+        alert("Reservation bien effectuée")
+      this.router.navigate(['/listeResa'])
+      return null
+      }
       this.nouvellResaService.create(this.formReservation,this.compte.id)
+      alert("Reservation bien effectuée")
+      this.router.navigate(['/listeResa'])
     }
     logout(){
       console.log("ok")

@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-  <!-- {{ formReservation | json }} -->
+  {{ formReservation | json }}
   {{ compte | json }}
   <div class="col-md-6 offset-md-3 pt-5">
     <div class="card">
@@ -57,6 +57,31 @@
             <option value="suite">Suite</option>
             <option value="suitepresidentielle">Suite présidentielle</option>
           </select>
+        </div>
+        <div
+          *ngIf="
+            (compte?.className == 'Admin' ||
+              compte?.className == 'Personnel') &&
+            currentAction == 'inscription'
+          "
+          class="input-group"
+        >
+          <label class="input-group-text col-md-5">Client :</label>
+          <select class="form-select text-center" [(ngModel)]="clientId">
+            <option *ngFor="let c of listClient()" value="{{ c.id }}">
+              id : {{ c.id }} - Nom : {{ c.nom }} - Prenom : {{ c.prenom }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="currentAction == 'edit'" class="input-group">
+          <label class="input-group-text col-md-5">Client :</label>
+          <input
+            [(ngModel)]="clientId"
+            type="text"
+            name=""
+            class="form-control text-center"
+            disabled
+          />
         </div>
         <div class="form-check form-switch offset-4 mt-4">
           <label class="form-check-label" for="editPassager">
@@ -248,6 +273,7 @@
   <div class="">
     <button
       (click)="saveReservation()"
+      routerLinkActive="active"
       type="button"
       class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3"
     >

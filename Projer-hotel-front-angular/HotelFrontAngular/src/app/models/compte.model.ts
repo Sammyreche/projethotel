@@ -13,7 +13,7 @@ export class Compte{
  }
 
  export class Reservation {
-     id:              string;
+     id:              number;
      clientPrincipal: Client;
      passagers:       Passager[];
      dateDebut:       string;
@@ -25,7 +25,7 @@ prenom : string;
 mail : string;
 telephone : string;
 naissance : string;
-listResa : Array<Reservation>;
+resa : Array<Reservation>;
 
 }
 export class Personnel extends Compte{

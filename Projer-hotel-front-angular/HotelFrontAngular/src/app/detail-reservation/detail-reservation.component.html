@@ -106,11 +106,20 @@
       </button> -->
     <button
       [routerLink]="['/nouvelResa']"
+      routerLinkActive="active"
       [queryParams]="{ id: reservations.id }"
       routerLinkActive="active"
       class="btn btn-primary text-center"
     >
       Modifier
+    </button>
+    <button
+      [routerLink]="['/listeResa']"
+      [queryParams]="{ id: reservations.id }"
+      routerLinkActive="active"
+      class="btn btn-primary text-center ms-3"
+    >
+      Retour
     </button>
   </div>
 </div>

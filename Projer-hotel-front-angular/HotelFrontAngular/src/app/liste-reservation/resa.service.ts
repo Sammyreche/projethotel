@@ -44,6 +44,7 @@ findById(id: number): Observable<ListeReservation> {
 }
 
 findAll(): Array<ListeReservation> {
+  
   return this.reservations;
 }
 
@@ -93,7 +94,7 @@ if (this.connexionService.compteConnecte) {
     {
       this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
         this.reservations = response;
-        console.log(response)
+        // console.log(response)
       });}
   }
 }else
