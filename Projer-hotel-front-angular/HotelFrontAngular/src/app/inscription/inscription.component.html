@@ -15,36 +15,28 @@
                 Inscription
               </p>
 
-              <div class="typeCompte"
-                *ngIf="
-                            connexionService.compteConnecte?.className ==
-                            'Admin'
-                          "
-                        >
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example1c"
-                        >Type Compte</label
-                      >
-                      <select
-                        style="background-color: #f1d7c3; border-radius: 15 px; "
-                        class="form-select text-center"
-                        [(ngModel)]="formInscription.className"
-                        
-                      >
-                        <option value="Client" selected>Client</option>
+              <div
+                class="typeCompte"
+                *ngIf="connexionService.compteConnecte?.className == 'Admin'"
+              >
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example1c"
+                      >Type Compte</label
+                    >
+                    <select
+                      style="background-color: #f1d7c3; border-radius: 15 px"
+                      class="form-select text-center"
+                      [(ngModel)]="formInscription.className"
+                    >
+                      <option value="Client" selected>Client</option>
 
-                        <option
-                          
-                          value="Personnel"
-                        >
-                          Personnel
-                        </option>
-                      </select>
-                    </div>
+                      <option value="Personnel">Personnel</option>
+                    </select>
                   </div>
                 </div>
+              </div>
 
               <div class="mx-1 mx-md-4">
                 <div class="d-flex flex-row align-items-center mb-4">
@@ -80,8 +72,10 @@
                   </div>
                 </div>
 
-                <div class="d-flex flex-row align-items-center mb-4"
-                *ngIf="formInscription.className== 'Client'">
+                <div
+                  class="d-flex flex-row align-items-center mb-4"
+                  *ngIf="formInscription.className == 'Client'"
+                >
                   <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
                     <input
@@ -98,8 +92,10 @@
                   </div>
                 </div>
 
-                <div class="d-flex flex-row align-items-center mb-4"
-                *ngIf="formInscription.className== 'Client'">
+                <div
+                  class="d-flex flex-row align-items-center mb-4"
+                  *ngIf="formInscription.className == 'Client'"
+                >
                   <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
                     <input
@@ -145,8 +141,6 @@
                       >Mot de Passe</label
                     >
                   </div>
-
-                 
                 </div>
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
@@ -162,11 +156,15 @@
                     <label class="form-label" for="form3Example4c"
                       >Confirmer votre mot de passe</label
                     >
-                    <br>
-                        <span *ngIf="passcorect" class="badge badge-pill bg-danger">les mots de passe sont différent</span>
+                    <br />
+                    <span
+                      *ngIf="verifMdpcompatible()"
+                      class="badge badge-pill bg-danger"
+                      >les mots de passe sont différent</span
+                    >
                   </div>
-                  </div>
-                
+                </div>
+
                 <br />
                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                   <button

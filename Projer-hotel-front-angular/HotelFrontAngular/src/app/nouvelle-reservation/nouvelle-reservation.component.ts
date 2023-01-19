@@ -178,7 +178,7 @@ export class NouvelleReservationComponent {
       }
     }
 
-    saveReservation(){
+    saveReservation() : any{
 
       if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
         alert("Date début doit etre inferieur à la date fin ");
@@ -239,6 +239,9 @@ export class NouvelleReservationComponent {
       
       
     }
+
+
+    
     logout(){
       console.log("ok")
       this.compteService.logout()

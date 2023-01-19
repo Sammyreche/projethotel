@@ -39,6 +39,14 @@ constructor(public InscriptionService : InscriptionService,
     this.passcorect=true;
   }
 
-}
+} 
+
+
+
+verifMdpcompatible() : boolean{
+    if (this.verifPass === this.formInscription.password) {
+      return false
+    }return true
+  }
 }
 
