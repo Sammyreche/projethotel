@@ -644,7 +644,7 @@
           padding: 10px;
         "
       >
-        NOTRE EQUIPE
+        <label (click)="affichagePlus()">NOTRE EQUIPE</label>
       </h1>
 
       <svg
@@ -876,10 +876,20 @@
         Inscription à la newsletter
       </div>
       <div style="margin: 10px">
-        <input placeholder="inserer votre mail" type="email" />
+        <input
+          [(ngModel)]="newsLetter"
+          placeholder="inserer votre mail"
+          type="email"
+        />
       </div>
       <div style="background-color: #ffffff; margin: 10px">
-        <input button (click)="alertNews()" class="btn" type="button" value="Envoyer" />
+        <input
+          button
+          (click)="alertNews()"
+          class="btn"
+          type="button"
+          value="Envoyer"
+        />
       </div>
     </div>
     <div
@@ -911,9 +921,97 @@
           color: rgb(255, 255, 255);
         "
       >
-        Nous contacter
+        <button
+          style="
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px;
+            color: rgb(255, 255, 255);
+          "
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Nous contacter
+        </button>
       </div>
     </div>
   </footer>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Merci de remplir le formulaire ci-dessous
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="validationDefault01" class="form-label"></label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault01"
+                placeholder="Nom"
+                required
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label"></label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationDefault02"
+                placeholder="Prenom"
+                required
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefaultUsername" class="form-label"></label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  class="form-control"
+                  id="validationDefaultUsername"
+                  aria-describedby="inputGroupPrepend2"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <textarea
+            class="form-control mt-5"
+            placeholder="Inserer votre message"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            style="border: #f1d7c3; background-color: rgb(244, 242, 238)"
+            type="button"
+            class="btn"
+            data-bs-dismiss="modal"
+          >
+            Envoyer
+          </button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 <!-- </html> -->

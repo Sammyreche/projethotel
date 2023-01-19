@@ -39,7 +39,8 @@ export class Personnel extends Compte{
 
 nom : string;
 prenom: string;
-
+fonction : string;
+salaire : number
 
 
 }

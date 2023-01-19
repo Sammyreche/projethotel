@@ -21,6 +21,11 @@ public class Personnel extends Compte {
 	@Column(name = "firstname", columnDefinition = "VARCHAR(35)")
 	@JsonView(views.ViewBase.class)
 	private String prenom;
+	@JsonView(views.ViewBase.class)
+	private String fonction;
+	
+	@JsonView(views.ViewBase.class)
+	private Integer salaire;
 	
 	public Personnel() {
 	}
@@ -42,7 +47,22 @@ public class Personnel extends Compte {
 	}
 
 
-	
+	public String getFonction() {
+		return fonction;
+	}
+
+	public void setFonction(String fonction) {
+		this.fonction = fonction;
+	}
+
+	public Integer getSalaire() {
+		return salaire;
+	}
+
+	public void setSalaire(Integer salaire) {
+		this.salaire = salaire;
+	}
+
 	
 
 }

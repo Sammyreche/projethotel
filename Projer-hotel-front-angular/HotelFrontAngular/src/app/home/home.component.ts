@@ -11,6 +11,7 @@ import { ConnexionService } from '../connexion/connexion.service';
 export class HomeComponent implements OnInit {
   etat = "off";
 connectedCompte = this.connexionService.compteConnecte;
+newsLetter :string;
 
 constructor(public connexionService: ConnexionService,private route: ActivatedRoute,
   private router: Router){
@@ -142,6 +143,7 @@ toNavig(){
 // *ngIf="connectedCompte : [routerLink]="['/nouvelResa']" "
 
 alertNews() {
+  this.newsLetter=""
   alert("Vous êtes maintenant inscrit à notre newsletter.")
 }
 
