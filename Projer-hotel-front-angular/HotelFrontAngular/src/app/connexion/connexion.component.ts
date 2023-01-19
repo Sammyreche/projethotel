@@ -26,8 +26,8 @@ export class ConnexionComponent {
       console.log(this.connexionService.compteConnecte)
       if(this.connexionService.compteConnecte==null){
         // alert("login ou mot de passe incorrect")
-        this.compteinexistant=true
-        return
+        this.compteinexistant=true;
+        return;
       }
       this.compteinexistant=false;
       switch (resp.className) {
