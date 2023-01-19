@@ -60,6 +60,13 @@ class PersonnelRessourceTests {
 	@Transactional
 	@Rollback
 	void testPersonnel() {
+		Personnel p = new Personnel();
+		p.setLogin("perso");
+		p.setPassword("perso");
+		p.setNom("perso1");
+		p.setSalaire(12);
+		p.setPrenom("prenoperso");
+		personelRes.create(p);
 		List<Personnel> personels=personelRes.findAllPersonnel();		
 		Personnel p1=personels.get(0);
 		Integer idp = p1.getId();

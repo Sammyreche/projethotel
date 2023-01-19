@@ -178,11 +178,10 @@ export class NouvelleReservationComponent {
       }
     }
 
-    saveReservation() : any{
-      if (this.compte==undefined) {
-        alert("Merci de vous connecter avant la reservation")
-        this.router.navigate(['/login'])
-       return null
+    saveReservation(){
+
+      if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
+        alert("Date début doit etre inferieur à la date fin ");
       }
       if (this.formReservation.passagers.length==0) {
         alert("impossible de sauvgarder une reservation sans passager")

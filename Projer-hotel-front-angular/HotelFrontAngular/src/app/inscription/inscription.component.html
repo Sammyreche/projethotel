@@ -105,6 +105,7 @@
                     <input
                       type="email"
                       id="form3Example1c"
+                      value="1993-12-21"
                       class="form-control"
                       placeholder="hotel@jordaninou.com"
                       required
@@ -161,6 +162,8 @@
                     <label class="form-label" for="form3Example4c"
                       >Confirmer votre mot de passe</label
                     >
+                    <br>
+                        <span *ngIf="passcorect" class="badge badge-pill bg-danger">les mots de passe sont différent</span>
                   </div>
                   </div>
                 
