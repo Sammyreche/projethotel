@@ -1,10 +1,11 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ConnexionService } from '../connexion/connexion.service';
 import { resaDetailHttpService } from '../detail-reservation/resaDetailHttp.service';
 import { ResaService } from '../liste-reservation/resa.service';
-import { Compte } from '../models/compte.model';
+import { Client, Compte } from '../models/compte.model';
 import { Detailresa, Passager } from '../models/detailresa.model';
 import { NouvellReservationService } from './nouvell-reservation.service';
 
@@ -23,7 +24,8 @@ export class NouvelleReservationComponent {
  
   editPassager : boolean = false
   editActiviter : boolean = false
-  compte : Compte = this.compteService.compteConnecte;
+  compte :Compte  = this.compteService.compteConnecte;
+
   //compte : Compte = JSON.parse(sessionStorage.getItem('connected'));
   //let compteJson = JSON.stringify(compte);
  // sessionStorage.setItem('user', compteJson);
@@ -76,6 +78,18 @@ export class NouvelleReservationComponent {
     
   });
 
+
+  if (this.currentAction == "inscription" && this.compte.className=="Client") {
+    this.editPassager = true
+    let client = JSON.stringify(this.compte)
+    let client2 : Client = JSON.parse(client)
+    console.log(client2)
+    this.formReservation.passagers.push(structuredClone(new Passager(client2.nom,client2.prenom,client2.naissance)))  }
+
+
+
+
+
   }
 
 
@@ -124,7 +138,10 @@ export class NouvelleReservationComponent {
       this.formReservation.passagers.push(structuredClone(this.passager))
     }
     supprimerPassager(){
-      this.formReservation.passagers.splice( (this.formReservation.passagers.length-1),1)
+      if (this.formReservation.passagers.length>1) {
+        this.formReservation.passagers.splice( (this.formReservation.passagers.length-1),1)
+      }
+      
     }
     augmenterNbrAccomp(p : Passager){
        if (p.nombre ==undefined) {
@@ -185,5 +202,10 @@ export class NouvelleReservationComponent {
     logout(){
       console.log("ok")
       this.compteService.logout()
+    }
+
+    handleSupprimerPassage(p : Passager){
+      this.nouvellResaService.supprimerPassager(p.id_passager)
+      this.formReservation.passagers.splice( (this.formReservation.passagers.indexOf(p)),1)
     }
 }
