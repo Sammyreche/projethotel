@@ -50,7 +50,7 @@ public class ListeReservationTest {
 		resDTO.setNombrePassager(4);
 		
 		List<ListeReservationDto> listeResa =listeRes.findAll();
-		System.out.println(listeResa);
+		listeRes.findById(listeResa.get(0).getId());
 		 
 	}
 	
