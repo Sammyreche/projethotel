@@ -239,7 +239,12 @@ void testfindall() {
 		  
 		// resRes.createbisAjoutPassager(resDTO, c.getId());
 		
-		resRes.findall();
+		  List<ReservationDto>  listresa = resRes.findall();
+		  ReservationDto res=new ReservationDto();
+		 res= listresa.get(1);
+		 res.setDateDebut_resa(LocalDate.parse("1992-01-01"));
+		 //resRes.update(res.getId(), res);
+		 
 		
 	}
 }
