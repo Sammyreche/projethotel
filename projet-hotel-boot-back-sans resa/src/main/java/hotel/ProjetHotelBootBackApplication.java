@@ -1,11 +1,13 @@
 package hotel;
 
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import hotel.dao.IDAOChambre;
 import hotel.dao.IDAOClient;
@@ -27,20 +29,22 @@ public class ProjetHotelBootBackApplication {
 		SpringApplication.run(ProjetHotelBootBackApplication.class, args);
 	}
 
-//   //@Bean
-//    CommandLineRunner commandLineRunner(
-//    		IDAOClient daoClient, IDAOCompte daoCompte,
-//    		IDAOPassager daoPassager,
-//    		IDAOReservation daoReservation,
-//    		IDAOPrestation daoPrestation,
-//    		IDAOChambre daocChambre){
-//       
-//
-//
-//    	return args -> {
-//    		
-//    		
-//
+	
+   @Bean
+    CommandLineRunner commandLineRunner(
+    		IDAOClient daoClient, IDAOCompte daoCompte,
+    		IDAOPassager daoPassager,
+    		IDAOReservation daoReservation,
+    		IDAOPrestation daoPrestation,
+    		IDAOChambre daocChambre){
+       
+
+
+    	return args -> {
+    		
+    		String encodedString = "admin";
+    		System.out.println(Base64.getEncoder().withoutPadding().encodeToString(encodedString.getBytes()));
+
 //
 //    		
 //            Stream.of("othmane","omar","clement").forEach(name->{
@@ -101,22 +105,22 @@ public class ProjetHotelBootBackApplication {
 //            
 //            
 //            
-//            
-//            
-//        };
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//    }
+            
+            
+        };
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
 }

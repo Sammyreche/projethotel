@@ -180,64 +180,25 @@ export class NouvelleReservationComponent {
 
     saveReservation() : any{
 
-      if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
-        alert("Date début doit etre inferieur à la date fin ");
-      }
-      if (this.formReservation.passagers.length==0) {
-        alert("impossible de sauvgarder une reservation sans passager")
-        alert("merci de remplir au moins les information d'un seul passager")
-        return null
-      }else
       if (this.compte.className=='Admin'||this.compte.className=='Personnel') {
-
-     
-
-    if (this.formReservation.dateDebut_resa.getTime>=Date.now().valueOf) {
-      console.log("ok je rentre")
-      console.log(Date.now().valueOf)
-      if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
-        // alert("Date début doit etre inferieur à la date fin ");
-        this.formReservation.dateFin_resa=null
-      }
-      else{
-        this.nouvellResaService.create(this.formReservation,this.clientId)
-        alert("Reservation bien effectuée")
-        this.router.navigate(['/listeResa'])
-    }
-    }
-        // this.nouvellResaService.create(this.formReservation,this.clientId)
-        
-      
-      return null
-      }
-
-      // console.log("" + this.formReservation.dateDebut_resa == new Date().toISOString().split('T')[0]);
-          
-  
-      // var d2 = new Date(Date.now());
-      //   console.log(d2.getDay)
-        
-      if ("" + this.formReservation.dateDebut_resa>=new Date().toISOString().split('T')[0]) {
-       
-        console.log("je suis laaaaaaa")
-      if(this.formReservation.dateDebut_resa>this.formReservation.dateFin_resa){
-        // alert("Date début doit etre inferieur à la date fin ");
-        // this.formReservation.dateFin_resa=null
-      }
-      else{
-        this.nouvellResaService.create(this.formReservation,this.compte.id).subscribe(rep=>{
+    if (("" + this.formReservation.dateDebut_resa>=new Date().toISOString().split('T')[0]) &&
+    (this.formReservation.dateDebut_resa<this.formReservation.dateFin_resa)) {
+      console.log("okokokokokokokoko")
+ 
+        this.nouvellResaService.create(this.formReservation,this.clientId).subscribe(rep=>{
           this.router.navigate(['/listeResa'])
         })
-        // alert("Reservation bien effectuée")
-        // new Promise( resolve => setTimeout(resolve, ms) )
-        
-        // setTimeout(()=>this.router.navigate(['/listeResa']), 1000);
-        // this.router.navigate(['/listeResa'])
     }
-  }
-      // this.nouvellResaService.create(this.formReservation,this.compte.id)
+      return null
+      }else if (this.compte.className=='Client')
+        
+      if (("" + this.formReservation.dateDebut_resa>=new Date().toISOString().split('T')[0])&&
+      (this.formReservation.dateDebut_resa<this.formReservation.dateFin_resa)) {
       
-      
+        this.nouvellResaService.create(this.formReservation,this.compte.id).subscribe(rep=>{
+          this.router.navigate(['/listeResa'])
+        }) 
+      }
     }
 
 
