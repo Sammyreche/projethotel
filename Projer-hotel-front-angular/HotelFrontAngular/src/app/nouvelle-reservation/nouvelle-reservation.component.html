@@ -35,6 +35,12 @@
             [(ngModel)]="formReservation.dateDebut_resa"
           />
         </div>
+        <div class="text-center">
+          <span class="badge badge-pill bg-danger" *ngIf="verifDateDebut()">
+            La date de début ne peut pas étre inferieure à la date
+            d'aujourd'hui</span
+          >
+        </div>
         <div class="input-group">
           <label class="input-group-text col-md-5">Date fin :</label>
           <input
@@ -44,6 +50,11 @@
             id="champR"
             [(ngModel)]="formReservation.dateFin_resa"
           />
+        </div>
+        <div class="text-center">
+          <span class="badge badge-pill bg-danger" *ngIf="verifDateFin()">
+            La date de fin ne peut pas étre inferieure à la date de début</span
+          >
         </div>
 
         <div class="input-group">
@@ -286,6 +297,8 @@
   </div>
   <div class="">
     <button
+      data-bs-target="#exampleModal"
+      data-bs-toggle="modal"
       (click)="saveReservation()"
       routerLinkActive="active"
       type="button"
@@ -304,4 +317,62 @@
       logout
     </button>
   </div> -->
+</div>
+<!-- Button trigger modal -->
+<!-- <button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div *ngIf="verifDateDebut() || verifDateFin(); else okey">
+          Attention <i style="color: red" class="bi bi-radioactive"></i>
+        </div>
+        <ng-template #okey>
+          <span
+            >Félicitation
+            <i style="color: green" class="bi bi-check2-circle"></i
+          ></span>
+        </ng-template>
+      </div>
+      <!-- <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div> -->
+      <div class="modal-body">
+        <div *ngIf="verifDateDebut() || verifDateFin(); else okey">
+          <div *ngIf="verifDateDebut()">
+            La date de début ne peut pas étre inferieure à la date d'aujourd'hui
+          </div>
+          <div *ngIf="verifDateFin()">
+            La date de fin ne peut pas étre inferieure à la date de début
+          </div>
+        </div>
+        <ng-template #okey>Reservation bien effectuée</ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
 </div>
