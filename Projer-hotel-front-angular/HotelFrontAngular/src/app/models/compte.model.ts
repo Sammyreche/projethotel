@@ -10,7 +10,14 @@ export class Compte{
      id:     number;
      nom:    string;
      prenom: string;
+     
+     constructor(nom : string,prenom :string){
+         this.nom=nom
+         this.prenom=prenom
+     }
  }
+ 
+
 
  export class Reservation {
      id:              number;
