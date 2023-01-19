@@ -1,5 +1,6 @@
 package hotel.web;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -133,6 +134,9 @@ public class PersonnelRessource {
 	@PostMapping("/personnel")
     @JsonView(views.ViewConnexion.class)
     public Personnel create(@RequestBody Personnel personnel) {
+		personnel.setPassword(Base64.getEncoder().withoutPadding().encodeToString(personnel.getPassword().getBytes()));    
+		
+		
         personnel = daoPersonnel.save(personnel);
 
         return personnel;
@@ -144,6 +148,7 @@ public class PersonnelRessource {
     if (id != personnel.getId() || !daoPersonnel.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+    personnel.setPassword(Base64.getEncoder().withoutPadding().encodeToString(personnel.getPassword().getBytes()));  
         personnel = daoPersonnel.save(personnel);
 
         return personnel;
