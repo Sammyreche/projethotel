@@ -1,6 +1,7 @@
 package hotel.web;
 
 import java.time.LocalDate;
+import java.util.Base64;
 
 import javax.validation.Valid;
 
@@ -33,7 +34,7 @@ public class SubscribeResource {
 		if (compte.getClassName().equals("Client")) {
 			Client client = new Client();
 			client.setLogin(compte.getLogin());
-			client.setPassword(compte.getPassword());
+			client.setPassword(Base64.getEncoder().withoutPadding().encodeToString(compte.getPassword().getBytes()));
 			client.setNom(compte.getNom());
 			client.setPrenom(compte.getPrenom());
 			client.setMail(compte.getMail());
@@ -46,7 +47,7 @@ public class SubscribeResource {
 				personnel.setNom(compte.getNom());
 				personnel.setPrenom(compte.getPrenom());
 				personnel.setLogin(compte.getLogin());
-				personnel.setPassword(compte.getPassword());
+				personnel.setPassword(Base64.getEncoder().withoutPadding().encodeToString(compte.getPassword().getBytes()));
 			personnel = daoCompte.save(personnel);
 			return personnel;
 

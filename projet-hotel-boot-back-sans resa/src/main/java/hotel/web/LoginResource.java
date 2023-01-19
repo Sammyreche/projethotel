@@ -1,5 +1,7 @@
 package hotel.web;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +30,9 @@ public class LoginResource {
 	@PostMapping("")
 	@JsonView(views.ViewConnexion.class)
 	public Compte login(@RequestBody AuthDTO auth) {
-		Compte conect = daoCompte.findByLoginAndPassword(auth.getLogin(), auth.getPassword());
+	//	String encodedString = "admin";
+	//	System.out.println(Base64.getEncoder().withoutPadding().encodeToString(auth.getPassword().getBytes()));
+		Compte conect = daoCompte.findByLoginAndPassword(auth.getLogin(), Base64.getEncoder().withoutPadding().encodeToString(auth.getPassword().getBytes()));
 //		if (conect==null) {
 //			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "login ou password incorect");
 //		}
