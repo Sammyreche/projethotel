@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-  <!-- {{ formReservation | json }}
-  {{ compte | json }} -->
+  <!-- {{ formReservation | json }}-->
+  <!-- {{ compte | json }} -->
   <div class="col-md-6 offset-md-3 pt-5">
     <div class="card">
       <div *ngIf="currentAction == 'inscription'" class="card-header">
@@ -35,6 +35,12 @@
             [(ngModel)]="formReservation.dateDebut_resa"
           />
         </div>
+        <div class="text-center">
+          <span class="badge badge-pill bg-danger" *ngIf="verifDateDebut()">
+            La date de début ne peut pas étre inferieure à la date
+            d'aujourd'hui</span
+          >
+        </div>
         <div class="input-group">
           <label class="input-group-text col-md-5">Date fin :</label>
           <input
@@ -44,6 +50,11 @@
             id="champR"
             [(ngModel)]="formReservation.dateFin_resa"
           />
+        </div>
+        <div class="text-center">
+          <span class="badge badge-pill bg-danger" *ngIf="verifDateFin()">
+            La date de fin ne peut pas étre inferieure à la date de début</span
+          >
         </div>
 
         <div class="input-group">
@@ -88,11 +99,21 @@
             Ajouter des invités
           </label>
           <input
+            *ngIf="compte.className == 'Client'; else temp"
             (click)="handleSetAffichagePassager()"
+            Checked
             class="form-check-input form-check-lg"
             type="checkbox"
             id="editPassager"
           />
+          <ng-template #temp>
+            <input
+              (click)="handleSetAffichagePassager()"
+              class="form-check-input form-check-lg"
+              type="checkbox"
+              id="editPassager"
+            />
+          </ng-template>
         </div>
         <div *ngIf="editPassager" class="offset-3 mt-2">
           <span>Nombre d'invités :</span>
@@ -183,7 +204,14 @@
             </div>
             <div class="row mt-4 ms-5">
               <div class="col">
-                <button type="button" class="btn btn-danger">
+                <button
+                  [ngClass]="{
+                    disabled: formReservation.passagers.indexOf(p) == 0
+                  }"
+                  (click)="handleSupprimerPassage(p)"
+                  type="button"
+                  class="btn btn-danger"
+                >
                   Supprimer
                 </button>
               </div>
@@ -269,10 +297,13 @@
   </div>
   <div class="">
     <button
+      data-bs-target="#exampleModal"
+      data-bs-toggle="modal"
       (click)="saveReservation()"
       routerLinkActive="active"
       type="button"
-      class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3" style = "background-color: #447ebb !important"
+      class="btn btn-primary btn-lg btn-block col-6 offset-md-3 mt-3 mb-3"
+      style="background-color: #447ebb !important"
     >
       RESERVER
     </button>
@@ -286,4 +317,62 @@
       logout
     </button>
   </div> -->
+</div>
+<!-- Button trigger modal -->
+<!-- <button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div *ngIf="verifDateDebut() || verifDateFin(); else okey">
+          Attention <i style="color: red" class="bi bi-radioactive"></i>
+        </div>
+        <ng-template #okey>
+          <span
+            >Félicitation
+            <i style="color: green" class="bi bi-check2-circle"></i
+          ></span>
+        </ng-template>
+      </div>
+      <!-- <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div> -->
+      <div class="modal-body">
+        <div *ngIf="verifDateDebut() || verifDateFin(); else okey">
+          <div *ngIf="verifDateDebut()">
+            La date de début ne peut pas étre inferieure à la date d'aujourd'hui
+          </div>
+          <div *ngIf="verifDateFin()">
+            La date de fin ne peut pas étre inferieure à la date de début
+          </div>
+        </div>
+        <ng-template #okey>Reservation bien effectuée</ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
 </div>

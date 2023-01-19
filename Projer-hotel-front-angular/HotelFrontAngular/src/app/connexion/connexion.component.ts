@@ -25,14 +25,15 @@ export class ConnexionComponent {
       sessionStorage.setItem('connected',JSON.stringify(structuredClone(resp)))
       console.log(this.connexionService.compteConnecte)
       if(this.connexionService.compteConnecte==null){
-        this.compteinexistant=true
-        return
+        // alert("login ou mot de passe incorrect")
+        this.compteinexistant=true;
+        return;
       }
       this.compteinexistant=false;
       switch (resp.className) {
         case 'Admin': ; this.router.navigate(['listeResa']) ; break;
         case 'Client':  this.router.navigate(['listeResa']) ; break;
-        case 'personel': this.router.navigate(['listeResa']) ; break;
+        case 'Personnel': this.router.navigate(['listeResa']) ; break;
       }
     });
   }

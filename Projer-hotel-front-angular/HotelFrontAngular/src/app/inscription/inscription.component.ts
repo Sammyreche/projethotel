@@ -16,6 +16,7 @@ export class InscriptionComponent {
   formInscription: Client= new Client ;
   
   verifPass : string;
+  passcorect : boolean = false;
 
 constructor(public InscriptionService : InscriptionService,
   public connexionService : ConnexionService){
@@ -30,13 +31,22 @@ constructor(public InscriptionService : InscriptionService,
   }
 
   verifpass(): void{
-    if (this.verifPass === this.formInscription.password)
+    if (this.verifPass === this.formInscription.password){
+      this.passcorect=false;
     this.save()
-  
+    }
   else{
-    alert("votre mot de passe ne corespond pas")
+    this.passcorect=true;
   }
 
-}
+} 
+
+
+
+verifMdpcompatible() : boolean{
+    if (this.verifPass === this.formInscription.password) {
+      return false
+    }return true
+  }
 }
 

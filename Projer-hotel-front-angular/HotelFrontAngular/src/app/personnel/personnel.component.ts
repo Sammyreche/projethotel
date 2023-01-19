@@ -27,8 +27,10 @@ constructor(private personnelService : PersonnelHttpService){
   // }
 
  list() {
+   console.log(   this.personnelService.personnels)
    return  this.personnelService.personnels
- }
+
+   }
 
 add():void {
   this.personnel = new Personnel();
