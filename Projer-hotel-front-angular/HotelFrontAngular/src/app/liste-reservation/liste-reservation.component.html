@@ -1,109 +1,126 @@
 <app-nav-bar></app-nav-bar>
 <div class="container" style="padding-bottom: 180px">
+  {{ listeClient | json }}
   <div class="card">
     <div class="card-header">Liste des reservation :</div>
     <div class="card-body">
       <!-- {{ searchFormGroup.value | json }} -->
-      <div>
-        <div class="input-group">
-          <label for="champR" class="input-group-text">Keyword</label>
-          <input
-            type="text"
-            name=""
-            class="form-control"
-            id="champR"
-            [(ngModel)]="keyword"
-          />
-          <button class="btn btn-info" (click)="handleSearchReservations()">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>N° resa</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>date début</th>
-            <th>date fin</th>
-            <th>Nombre des passagers</th>
-            <th>Détail</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let p of list()">
-            <td>{{ p.id }}</td>
-            <td>{{ p.nom }}</td>
-            <td>{{ p.prenom }}</td>
-            <td>{{ p.dateDebut_resa }}</td>
-            <td>{{ p.dateFin_resa }}</td>
-            <td class="text-center">{{ p.nombrePassager }}</td>
-            <td>
-              <button
-                [routerLink]="['/detailResa']"
-                [queryParams]="{ id: p.id }"
-                routerLinkActive="active"
-                class="btn btn-primary"
-              >
-                <i class="bi bi-plus-circle-fill bi-lg"></i>
-              </button>
-            </td>
-            <td>
-              <button
-                (click)="handleDeleteReservation(p)"
-                class="btn btn-danger"
-              >
-                <i class="bi bi-trash-fill"></i>
-              </button>
-            </td>
-          </tr>
-
-          <!-- debut pour test  -->
-
-          <!-- <tr>
-            <td>1</td>
-            <td>lam</td>
-            <td>omar</td>
-            <td>31-10-1994</td>
-            <td>31-10-1994</td>
-            <td>
-              <i class="bi bi-toggle-on"></i>
-              <i class="bi bi-toggle-off"></i>
-            </td>
-            <td>
-              <button class="btn btn-danger">
-                <span>Promo Off</span>
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-danger">
-                <i class="bi bi-trash-fill"></i>
-              </button>
-            </td>
-          </tr> -->
-
-          <!-- fin pour test  -->
-        </tbody>
-      </table>
-      <ul class="nav nav-pills justify-content-center">
-        <li *ngFor="let item of [].constructor(this.totalPages); let i = index">
-          <a
-            [ngClass]="i == this.currentpage ? 'btn-info' : 'btn-outline-info'"
-            (click)="goToPage(i)"
-            class="btn ms-1 mt-1"
-            >{{ i }}</a
-          >
-        </li>
-      </ul>
-      <button
-        class="btn btn-outline-success mt-5"
-        [routerLink]="['/nouvelResa']"
-        routerLinkActive="active"
+      <div
+        *ngIf="
+          connectedCompte.className == 'Personnel' ||
+            connectedCompte.className == 'Admin' ||
+            (connectedCompte.className == 'Client' &&
+              reservations.length > 0 &&
+              recherche == true);
+          else tableauVide
+        "
       >
-        Voulez Vous Rajouter une Nouvelle Reservation
-        <i class="bi bi-calendar2-day"></i>
-      </button>
+        <div
+          *ngIf="
+            connectedCompte.className == 'Personnel' ||
+            connectedCompte.className == 'Admin'
+          "
+        >
+          <div class="input-group">
+            <label for="champR" class="input-group-text">Keyword</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              id="champR"
+              [(ngModel)]="keyword"
+            />
+            <button class="btn btn-info" (click)="handleSearchReservations()">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>N° resa</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>date début</th>
+              <th>date fin</th>
+              <th>Nombre des passagers</th>
+              <th>Détail</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of reservations">
+              <td>{{ p.id }}</td>
+              <td>{{ p.nom }}</td>
+              <td>{{ p.prenom }}</td>
+              <td>{{ p.dateDebut_resa }}</td>
+              <td>{{ p.dateFin_resa }}</td>
+              <td class="text-center">{{ p.nombrePassager }}</td>
+              <td>
+                <button
+                  [routerLink]="['/detailResa']"
+                  [queryParams]="{ id: p.id }"
+                  routerLinkActive="active"
+                  class="btn btn-primary"
+                >
+                  <i class="bi bi-plus-circle-fill bi-lg"></i>
+                </button>
+              </td>
+              <td>
+                <button
+                  (click)="handleDeleteReservation(p)"
+                  class="btn btn-danger"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul class="nav nav-pills justify-content-center">
+          <li
+            *ngFor="let item of [].constructor(this.totalPages); let i = index"
+          >
+            <a
+              [ngClass]="
+                i == this.currentpage ? 'btn-info' : 'btn-outline-info'
+              "
+              (click)="goToPage(i)"
+              class="btn ms-1 mt-1"
+              >{{ i + 1 }}</a
+            >
+          </li>
+        </ul>
+        <button
+          class="btn btn-outline-success mt-5"
+          [routerLink]="['/nouvelResa']"
+          routerLinkActive="active"
+        >
+          Voulez Vous Rajouter une Nouvelle Reservation
+          <i class="bi bi-calendar2-day"></i>
+        </button>
+      </div>
     </div>
+    <ng-template #tableauVide
+      ><div class="text-center mt-3">
+        <button
+          [routerLink]="['/nouvelResa']"
+          routerLinkActive="active"
+          style="align-content: center; background-color: blanchedalmond"
+          class="btn"
+        >
+          cliquer ici pour commencer l'aventure
+        </button>
+      </div>
+    </ng-template>
   </div>
+  <!-- <div>
+    <img
+      style="width: 100%"
+      src="assets/Accueil_apres_inscription.jpg"
+      alt=""
+    />
+  </div> -->
 </div>

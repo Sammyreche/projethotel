@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ConnexionService } from '../connexion/connexion.service';
 import { resaDetailHttpService } from '../detail-reservation/resaDetailHttp.service';
+import { ResaService } from '../liste-reservation/resa.service';
 import { Compte } from '../models/compte.model';
 import { Detailresa, Passager } from '../models/detailresa.model';
 import { NouvellReservationService } from './nouvell-reservation.service';
@@ -32,7 +33,15 @@ export class NouvelleReservationComponent {
     private nouvellResaService : NouvellReservationService,
     private route: ActivatedRoute,
     private router: Router,
-    public resaService : resaDetailHttpService){
+    public resaService : resaDetailHttpService,
+    private listeResaService : ResaService){
+
+      this.nouvellResaService.listeClient()
+      console.log(this.listeResaService.premiereConnection)
+      this.listeResaService.premiereConnection =false
+      console.log(this.listeResaService.premiereConnection)
+
+
    this.formReservation.passagers = new Array<Passager>() 
 
   // this.route.params.subscribe(param => {
@@ -78,7 +87,7 @@ export class NouvelleReservationComponent {
     //   console.log(rep)
     // })
     // this.compteClient
-    this.nouvellResaService.listeClient()
+
 
   }
 
