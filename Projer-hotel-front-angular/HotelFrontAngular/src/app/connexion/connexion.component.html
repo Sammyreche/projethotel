@@ -59,6 +59,9 @@
                         <label class="form-label" for="form3Example4c"
                           >Login</label
                         >
+                        <br>
+                        <span 
+                        *ngIf="compteinexistant" class="badge badge-pill bg-danger">login ou mot de passe incorect</span>
                       </div>
                     </div>
 
@@ -74,8 +77,10 @@
                           [(ngModel)]="password"
                         />
                         <label class="form-label" for="form3Example4c"
-                          >Password</label
+                          >Password </label
                         >
+                        <br>
+                        <span *ngIf="compteinexistant" class="badge badge-pill bg-danger">login ou mot de passe incorect</span>
                       </div>
                     </div>
                     <br />
