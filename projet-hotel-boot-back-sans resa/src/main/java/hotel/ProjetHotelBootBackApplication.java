@@ -42,8 +42,13 @@ public class ProjetHotelBootBackApplication {
 
     	return args -> {
     		
-    		String encodedString = "admin";
+    		String encodedString = "123";
+    		String encodedString1 = "test6";
+    	
     		System.out.println(Base64.getEncoder().withoutPadding().encodeToString(encodedString.getBytes()));
+    		System.out.println(Base64.getEncoder().withoutPadding().encodeToString(encodedString1.getBytes()));
+
+
 
 //
 //    		
