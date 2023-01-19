@@ -105,10 +105,10 @@
                 class="nav-link"
                 [routerLink]="['/listeResa']"
                 routerLinkActive="active"
-                >listeResa</a
+                >ListeReservation</a
               >
             </li>
-            <li class="nav-item">
+            <li *ngIf="connectedCompte == null" class="nav-item">
               <a
                 class="nav-link"
                 [routerLink]="['/login']"
@@ -116,14 +116,14 @@
                 >Connexion</a
               >
             </li>
-            <li *ngIf="connectedCompte" class="nav-item">
+            <!-- <li *ngIf="connectedCompte" class="nav-item">
               <a
                 class="nav-link"
                 [routerLink]="['/detailResa']"
                 routerLinkActive="active"
                 >Detail resa</a
               >
-            </li>
+            </li> -->
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -138,6 +138,14 @@
                 [routerLink]="['/nouvelResa']"
                 routerLinkActive="active"
                 >Nouvelle Reservation</a
+              >
+            </li>
+            <li *ngIf="connectedCompte?.className == 'Admin'" class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="['/personnel']"
+                routerLinkActive="active"
+                >Personnel</a
               >
             </li>
           </ul>
