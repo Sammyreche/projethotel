@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppConfigService } from '../app-config.service';
 import { HttpClient } from '@angular/common/http';
 import { Detailresa } from '../models/detailresa.model';
-import { Client, Compte } from '../models/compte.model';
+import { Client, Compte, Passager } from '../models/compte.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -30,5 +30,10 @@ export class NouvellReservationService {
         console.log(resp)
        });
        return null
+    }
+    supprimerPassager(id_passager : number){
+    this.http.delete<Passager>(this.serviceUrl+"/passager/"+id_passager).subscribe(resp => {
+      console.log("supression Ok")
+     });
     }
 }

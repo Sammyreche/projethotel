@@ -11,13 +11,13 @@ import { ListeReservation, PageReservation } from '../models/reservation.model';
 })
 export class ResaService  {
   serviceUrl! : string;
-  reservations! : Array<ListeReservation>;
+  reservations : Array<ListeReservation> = null
+  premiereConnection : boolean =true
   
   result! : Observable<ListeReservation>;
   
   constructor(private http: HttpClient, private appConfig: AppConfigService, private connexionService :ConnexionService) {
     this.serviceUrl = appConfig.backEndUrl + "reservations/";
-    this.load();
   // this.reservations = [{"id":1,"dateDebut_resa":"2022-01-13","dateFin_resa":"2022-11-12","nom":"lam","prenom":"omar","email":"client@ client","telephone":"1111111","naissance":"2023-01-12","nombrePassager":1}]
   // for (let index = 2; index < 10; index++) {
   //   this.reservations.push({"id":index,"dateDebut_resa":"2022-01-11","dateFin_resa":"2022-11-12","nom":"lam","prenom":"omar","email":"client@ client","telephone":"1111111","naissance":"2023-01-12","nombrePassager":1})
@@ -50,17 +50,23 @@ findAll(): Array<ListeReservation> {
 
 
 
-search(kw : string) : void{
-this.http.get <Array<ListeReservation>>(this.serviceUrl+"liste/search/" + kw).subscribe(response => {
-  this.reservations = response;
-  //console.log(this.reservations)
-});
+search(kw : string) : Observable<boolean> {
+  return new Observable<boolean>(observer => {
+    this.http.get <Array<ListeReservation>>(this.serviceUrl+"liste/search/" + kw).subscribe(response => {
+      this.reservations = response;
+      observer.next(true);
+      //console.log(this.reservations)
+    });
+  });
 }
 
-remove(id: number): void {
+remove(id: number): Observable<boolean> {
+  return new Observable<boolean>(observer => {
   this.http.delete<void>(this.serviceUrl + id).subscribe(resp => {
     this.load();
+    observer.next(true);
   });
+});
 }
 
 //    remove(id: number): void {
@@ -84,23 +90,28 @@ public getPageReservations(page :number,size : number) : Observable<PageReservat
 
 
 
-public load(): void {
-if (this.connexionService.compteConnecte) {
-  if (this.connexionService.compteConnecte.className=="Client") {
-    this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/client/"+this.connexionService.compteConnecte.id).subscribe(response => {
-      this.reservations = response
-  });} 
-  else if(this.connexionService.compteConnecte.className=="Personnel" || this.connexionService.compteConnecte.className=="Admin"){
-    {
-      this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
-        this.reservations = response;
-        // console.log(response)
-      });}
+public load(): Observable<boolean> {
+  return new Observable<boolean>(observer => {
+    if (this.connexionService.compteConnecte) {
+      if (this.connexionService.compteConnecte.className=="Client") {
+        this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/client/"+this.connexionService.compteConnecte.id).subscribe(response => {
+          this.reservations = response;
+          observer.next(true);
+      });} 
+      else if(this.connexionService.compteConnecte.className=="Personnel" || this.connexionService.compteConnecte.className=="Admin"){
+        {
+          this.http.get<Array<ListeReservation>>(this.serviceUrl+"liste/").subscribe(response => {
+            this.reservations = response;
+            observer.next(true);
+            // console.log(response)
+          });}
+      }
+    }else
+    
+    this.reservations=[];
+    observer.next(false);
+    });
   }
-}else
-
-this.reservations=[]
-}
 
 
 // if (this.connexionService.compteConnecte.className=="Client") {
